@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>E-Shop Home</title>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
@@ -13,22 +13,27 @@
   <body>
     <header>
       <div class="container">
-        <h1 class="logo">E-Shop</h1>
+        <h1 class="logo">
+          <figure class="logo-img">
+            <img src="" alt="" />
+          </figure>
+          <a href="/">E-Shop</a>
+        </h1>
         <nav>
-          <ul class="nav-menu">
+          <ul class="nav-list">
             <li class="nav-item"><a class="nav-link" href="">Men</a></li>
             <li class="nav-item"><a class="nav-link" href="">Women</a></li>
             <li class="nav-item"><a class="nav-link" href="">Kids</a></li>
           </ul>
         </nav>
-        <ul class="header-actions">
-          <li class="header-action">
+        <ul class="actions-list">
+          <li class="action-item">
             <button><i class="fa-solid fa-magnifying-glass"></i></button>
           </li>
-          <li class="header-action">
+          <li class="action-item">
             <button><i class="fa-solid fa-cart-shopping"></i></button>
           </li>
-          <li class="header-action">
+          <li class="action-item">
             <button><i class="fa-solid fa-user"></i></button>
           </li>
         </ul>
@@ -37,16 +42,16 @@
     <main>
       <section class="section-banner">
         <div class="container">
-          <h2 class="banner-title">Sale of the summer collection</h2>
-          <div class="banner-btn">
+          <h2 class="banner-title">
+            Sale of the <span>summer</span> collection
+          </h2>
+          <button class="banner-btn">
             <i class="fa-solid fa-arrow-right"></i>
             <span>Shop Now</span>
-          </div>
+          </button>
         </div>
-      </section>
-      <section class="section-offers">
-        <ul class="offers">
-          <li class="offer">
+        <ul class="offers-list">
+          <li class="offer-item">
             <span class="offer-icon">
               <i class="fa-solid fa-truck-moving"></i>
             </span>
@@ -55,7 +60,7 @@
               <p class="offer-subtitle">On purchases over $199</p>
             </div>
           </li>
-          <li class="offer">
+          <li class="offer-item">
             <span class="offer-icon">
               <i class="fa-solid fa-face-smile"></i>
             </span>
@@ -66,7 +71,7 @@
               </p>
             </div>
           </li>
-          <li class="offer">
+          <li class="offer-item">
             <span class="offer-icon">
               <i class="fa-solid fa-shield"></i>
             </span>
@@ -79,32 +84,33 @@
           </li>
         </ul>
       </section>
-
       <section class="section-category">
         <div class="container">
-          <div class="category">
-            <h3 class="category-title">New arrivalsare now in!</h3>
-            <a class="btn" href="">SHOW COLLECTION</a>
-          </div>
-          <div class="category">
-            <h3 class="category-title">Basic t-shirts $29,99</h3>
-            <a class="btn" href="">MORE DETAILS</a>
-          </div>
-          <div class="category">
-            <span class="discount">-50%</span>
-            <h3 class="category-title">Sale this summer</h3>
-            <a class="btn" href="">VIEW ALL</a>
-          </div>
+          <ul class="categories-list">
+            <li class="category-item">
+              <h4 class="category-title">New arrivalsare now in!</h4>
+              <a class="btn btn-primary" href="">SHOW COLLECTION</a>
+            </li>
+            <li class="category-item">
+              <h4 class="category-title">Basic t-shirts $29,99</h4>
+              <a class="btn" href="">MORE DETAILS</a>
+            </li>
+            <li class="category-item">
+              <span class="discount">-50%</span>
+              <h4 class="category-title">Sale this summer</h4>
+              <a class="btn" href="">VIEW ALL</a>
+            </li>
+          </ul>
         </div>
       </section>
       <section class="section-products">
         <div class="container">
           <div class="section-heading">
-            <h2 class="section-title">Selected just for you</h2>
-            <button class="btn">SHOW MORE</button>
+            <h3 class="section-title">Selected just for you</h3>
+            <button class="btn btn-outline-primary">SHOW MORE</button>
           </div>
-          <ul class="section-content">
-            <li class="product">
+          <ul class="products-list">
+            <li class="product-item">
               <figure class="product-img">
                 <img
                   src="https://cdn.ssstutter.com/products/t3lVWLGQu3BP5uTx/062022/1654069934393.jpeg"
@@ -112,44 +118,44 @@
                 />
               </figure>
               <span class="discount">-30%</span>
-              <h3 class="product-name">T-Shirt Summer Vibes</h3>
+              <h4 class="product-name">T-Shirt Summer Vibes</h4>
               <div class="product-price">
-                <p class="product-current-price">$89.99</p>
-                <p class="product-cost">$119.99</p>
+                <p class="price-discount">$89.99</p>
+                <p class="price-current">$119.99</p>
               </div>
             </li>
-            <li class="product">
+            <li class="product-item">
               <figure class="product-img">
                 <img
                   src="https://cdn.ssstutter.com/products/t3lVWLGQu3BP5uTx/062022/1654069934393.jpeg"
                   alt=""
                 />
               </figure>
-              <h3 class="product-name">Loose Knit 3/4 Sleeve</h3>
+              <h4 class="product-name">Loose Knit 3/4 Sleeve</h4>
               <div class="product-price">
-                <p class="product-current-price">$119.999</p>
+                <p class="price-current">$119.999</p>
               </div>
             </li>
-            <li class="product">
+            <li class="product-item">
               <figure class="product-img">
                 <img
                   src="https://cdn.ssstutter.com/products/t3lVWLGQu3BP5uTx/062022/1654069934393.jpeg"
                   alt=""
                 />
               </figure>
-              <h3 class="product-name">Basic Slim Fit T-Shirt</h3>
+              <h4 class="product-name">Basic Slim Fit T-Shirt</h4>
               <div class="product-price">
-                <p class="product-current-price">$79.99</p>
+                <p class="price-current">$79.99</p>
               </div>
             </li>
-            <li class="product">
+            <li class="product-item">
               <figure class="product-img">
                 <img
                   src="https://cdn.ssstutter.com/products/t3lVWLGQu3BP5uTx/062022/1654069934393.jpeg"
                   alt=""
                 />
               </figure>
-              <h3 class="product-name">Loose Textured T-Shirt</h3>
+              <h4 class="product-name">Loose Textured T-Shirt</h4>
               <div class="product-price">
                 <p class="product-current-price">$119.99</p>
               </div>
@@ -157,52 +163,52 @@
           </ul>
         </div>
       </section>
-      <section class="section-offer-detail">
+      <section class="section-offers">
         <div class="container">
-          <h2 class="section-title">Why should you choose us?</h2>
-          <ul class="offers">
-            <li class="offer">
+          <h3 class="section-title">Why should you choose us?</h3>
+          <ul class="offers-list">
+            <li class="offer-item">
               <span class="offer-icon">
                 <i class="fa-solid fa-truck-moving"></i>
               </span>
               <div class="offer-content">
-                <h3 class="offer-title">Free shipping</h3>
+                <h4 class="offer-title">Free shipping</h4>
                 <p class="offer-subtitle">
                   All purchases over $199 are eligible forfree shipping via USPS
                   First Class Mail.
                 </p>
               </div>
             </li>
-            <li class="offer active">
+            <li class="offer-item active">
               <span class="offer-icon">
                 <i class="fa-solid fa-truck-moving"></i>
               </span>
               <div class="offer-content">
-                <h3 class="offer-title">Easy Payments</h3>
+                <h4 class="offer-title">Easy Payments</h4>
                 <p class="offer-subtitle">
                   All payments are processed instantlyover a secure payment
                   protocol.
                 </p>
               </div>
             </li>
-            <li class="offer">
+            <li class="offer-item">
               <span class="offer-icon">
                 <i class="fa-solid fa-face-smile"></i>
               </span>
               <div class="offer-content">
-                <h3 class="offer-title">Money-Back Guarantee</h3>
+                <h4 class="offer-title">Money-Back Guarantee</h4>
                 <p class="offer-subtitle">
                   If an item arrived damaged or you'vechanged your mind, you can
                   send itback for a full refund.
                 </p>
               </div>
             </li>
-            <li class="offer">
+            <li class="offer-item">
               <span class="offer-icon">
                 <i class="fa-solid fa-shield"></i>
               </span>
               <div class="offer-content">
-                <h3 class="offer-title">Finest Quality</h3>
+                <h4 class="offer-title">Finest Quality</h4>
                 <p class="offer-subtitle">
                   Designed to last, each of our products hasbeen crafted with
                   the finest materials.
@@ -215,8 +221,8 @@
       <section class="section-products">
         <div class="container">
           <h2 class="section-title">Selected just for you</h2>
-          <ul class="section-content">
-            <li class="product">
+          <ul class="products-list">
+            <li class="product-item">
               <figure class="product-img">
                 <img
                   src="https://cdn.ssstutter.com/products/t3lVWLGQu3BP5uTx/062022/1654069934393.jpeg"
@@ -224,44 +230,44 @@
                 />
               </figure>
               <span class="discount">-30%</span>
-              <h3 class="product-name">T-Shirt Summer Vibes</h3>
+              <h4 class="product-name">T-Shirt Summer Vibes</h4>
               <div class="product-price">
-                <p class="product-current-price">$89.99</p>
-                <p class="product-cost">$119.99</p>
+                <p class="price-discount">$89.99</p>
+                <p class="price-current">$119.99</p>
               </div>
             </li>
-            <li class="product">
+            <li class="product-item">
               <figure class="product-img">
                 <img
                   src="https://cdn.ssstutter.com/products/t3lVWLGQu3BP5uTx/062022/1654069934393.jpeg"
                   alt=""
                 />
               </figure>
-              <h3 class="product-name">Loose Knit 3/4 Sleeve</h3>
+              <h4 class="product-name">Loose Knit 3/4 Sleeve</h4>
               <div class="product-price">
-                <p class="product-current-price">$119.999</p>
+                <p class="price-current">$119.999</p>
               </div>
             </li>
-            <li class="product">
+            <li class="product-item">
               <figure class="product-img">
                 <img
                   src="https://cdn.ssstutter.com/products/t3lVWLGQu3BP5uTx/062022/1654069934393.jpeg"
                   alt=""
                 />
               </figure>
-              <h3 class="product-name">Basic Slim Fit T-Shirt</h3>
+              <h4 class="product-name">Basic Slim Fit T-Shirt</h4>
               <div class="product-price">
-                <p class="product-current-price">$79.99</p>
+                <p class="price-current">$79.99</p>
               </div>
             </li>
-            <li class="product">
+            <li class="product-item">
               <figure class="product-img">
                 <img
                   src="https://cdn.ssstutter.com/products/t3lVWLGQu3BP5uTx/062022/1654069934393.jpeg"
                   alt=""
                 />
               </figure>
-              <h3 class="product-name">Loose Textured T-Shirt</h3>
+              <h4 class="product-name">Loose Textured T-Shirt</h4>
               <div class="product-price">
                 <p class="product-current-price">$119.99</p>
               </div>
@@ -275,22 +281,31 @@
             <h2 class="section-title">
               Subscribe to our newsletter andreceive exclusive offers every week
             </h2>
-            <input type="email" placeholder="Enter your email" />
-            <button class="btn">SUBCRIBE</button>
+            <input
+              class="form-control"
+              type="email"
+              placeholder="Enter your email"
+            />
+            <button class="btn btn-secondary">SUBCRIBE</button>
           </form>
         </div>
       </section>
     </main>
     <footer>
       <div class="container">
-        <div class="footer-top">
-          <div class="footer-about">
-            <h1 class="logo">E-Shop</h1>
+        <div class="footer-top row">
+          <div class="footer-about col col-md-5">
+            <h3 class="logo">
+              <figure class="logo-img">
+                <img src="" alt="" />
+              </figure>
+              <a href="/">E-Shop</a>
+            </h3>
             <p class="about-content">
               House My Brand designs clothing for the young, the old &everyone
               in between – but most importantly, for the fashionable
             </p>
-            <ul class="socials">
+            <ul class="socials-list">
               <li class="social-item">
                 <a class="social-link" href="">
                   <i class="fa-brands fa-facebook-f"></i>
@@ -318,39 +333,49 @@
               </li>
             </ul>
           </div>
-          <ul class="footer-options">
-            <li class="footer-option">
-              <h3 class="option-title">Shopping online</h3>
-              <ul class="option-list">
-                <li class="option-item"><a href="">Order Status</a></li>
-                <li class="option-item">
-                  <a href="">Shipping And Delivery</a>
-                </li>
-                <li class="option-item"><a href="">Returns</a></li>
-                <li class="option-item"><a href="">Payment Options</a></li>
-                <li class="option-item"><a href="">Contact Us</a></li>
-              </ul>
-            </li>
-            <li class="footer-option">
-              <h3 class="option-title">Information</h3>
-              <ul class="option-list">
-                <li class="option-item"><a href="">Git Cards</a></li>
-                <li class="option-item"><a href="">Fine a store</a></li>
-                <li class="option-item"><a href="">Newsletter</a></li>
-                <li class="option-item"><a href="">Bacome a member</a></li>
-                <li class="option-item"><a href="">Site feedback</a></li>
-              </ul>
-            </li>
-            <li class="footer-option">
-              <h3 class="option-title">Contact</h3>
-              <ul class="option-list">
-                <li class="option-item"><a href="">store@uikit.com</a></li>
-                <li class="option-item">
-                  <a href="">Hotline: +1 131 138 138</a>
-                </li>
-              </ul>
-            </li>
-          </ul>
+          <div class="footer-options col col-md-7">
+            <div class="row">
+              <div class="col col-md-4">
+                <h3 class="option-title">Shopping online</h3>
+                <ul class="options-list">
+                  <li class="option-item"><a href="">Order Status</a></li>
+                  <li class="option-item">
+                    <a href="">Shipping And Delivery</a>
+                  </li>
+                  <li class="option-item">
+                    <a href="">Returns</a>
+                  </li>
+                  <li class="option-item">
+                    <a href="">Payment Options</a>
+                  </li>
+                  <li class="option-item">
+                    <a href="">Contact Us</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="col col-md-4">
+                <h3 class="option-title">Information</h3>
+                <ul class="options-list">
+                  <li class="option-item"><a href="">Git Cards</a></li>
+                  <li class="option-item"><a href="">Fine a store</a></li>
+                  <li class="option-item"><a href="">Newsletter</a></li>
+                  <li class="option-item"><a href="">Bacome a member</a></li>
+                  <li class="option-item"><a href="">Site feedback</a></li>
+                </ul>
+              </div>
+              <div class="col col-md-4">
+                <h3 class="option-title">Contact</h3>
+                <ul class="options-list">
+                  <li class="option-item">
+                    <a href="">store@uikit.com</a>
+                  </li>
+                  <li class="option-item">
+                    <a href="">Hotline: +1 131 138 138</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="footer-bottom">
           <p class="footer-copyright">
