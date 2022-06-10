@@ -12,42 +12,42 @@
   </head>
   <body>
     <header>
-      <div class="container d-flex justify-content-between">
+      <div class="container">
         <div class="header-left">
-          <a href="" class="logo-link">
-            <h1 class="logo">
+          <h1 class="logo">
+            <a href="/" class="logo-link">
               <div class="logo-img">
-                <img src="" alt="Vegist logo" class="" />
+                <img src="" alt="Vegist logo" />
               </div>
-            </h1>
-          </a>
+            </a>
+          </h1>
           <nav>
             <ul class="nav-list">
-              <li class="nav-item d-flex align-items-center">
-                <span>HOME</span>
+              <li class="nav-item">
+                <a href="" class="nav-link">HOME</a>
                 <i class="fa-solid fa-angle-down"></i>
               </li>
-              <li class="nav-item d-flex align-items-center">
-                <span>SHOP</span>
+              <li class="nav-item">
+                <a href="" class="nav-link">SHOP</a>
                 <i class="fa-solid fa-angle-down"></i>
               </li>
-              <li class="nav-item d-flex align-items-center">
-                <span>COLLECTION</span>
+              <li class="nav-item">
+                <a href="" class="nav-link">COLLECTION</a>
                 <i class="fa-solid fa-angle-down"></i>
               </li>
-              <li class="nav-item d-flex align-items-center">
-                <span>PAGES</span>
+              <li class="nav-item">
+                <a href="" class="nav-link">PAGES</a>
                 <i class="fa-solid fa-angle-down"></i>
               </li>
-              <li class="nav-item d-flex align-items-center">
-                <span>BLOGS</span>
+              <li class="nav-item">
+                <a href="" class="nav-link">BLOGS</a>
                 <i class="fa-solid fa-angle-down"></i>
               </li>
             </ul>
           </nav>
         </div>
         <div class="header-right">
-          <ul class="actions-list d-flex align-items-center">
+          <ul class="actions-list">
             <li class="action-item">
               <a class="action-link" href="">
                 <i class="fa-solid fa-magnifying-glass"></i>
@@ -71,13 +71,15 @@
     </header>
     <main>
       <section class="section-banner">
-        <div class="container d-flex align-items-center">
-          <h2 class="banner-title">
-            Farmfood <br />
-            Freshbox
-          </h2>
-          <p class="banner-subtitle">Fresh & Healthy</p>
-          <a class="banner-link" href="">SHOP NOW</a>
+        <div class="container">
+          <div class="banner">
+            <h2 class="banner-title">
+              Farmfood <br />
+              Freshbox
+            </h2>
+            <p class="banner-subtitle">Fresh & Healthy</p>
+            <a class="banner-link" href="">SHOP NOW</a>
+          </div>
         </div>
       </section>
       <section class="section-collections">
@@ -88,14 +90,16 @@
                 <div class="collection-img">
                   <img src="" alt="Organic Juice" />
                 </div>
-                <h3 class="collection-title">Organic Juice</h3>
-                <p class="collection-content">
-                  Fresh Vegetable <br />
-                  On Our Product
-                </p>
-                <a href="" class="btn btn-link-primary">
-                  Shop Now <i class="fa-solid fa-angle-right"></i>
-                </a>
+                <div class="collection-content">
+                  <h3 class="collection-title">Organic Juice</h3>
+                  <p class="collection-content">
+                    Fresh Vegetable <br />
+                    On Our Product
+                  </p>
+                  <a href="" class="btn btn-link-primary">
+                    Shop Now <i class="fa-solid fa-angle-right"></i>
+                  </a>
+                </div>
               </div>
             </li>
             <li class="collection-item col-4">
@@ -103,14 +107,16 @@
                 <div class="collection-img">
                   <img src="" alt="Fresh Food" />
                 </div>
-                <h3 class="collection-title">Fresh Food</h3>
-                <p class="collection-content">
-                  Eggplant <br />
-                  Fresh Meat
-                </p>
-                <a href="" class="btn btn-link-primary">
-                  Shop Now <i class="fa-solid fa-angle-right"></i>
-                </a>
+                <div class="collection-content">
+                  <h3 class="collection-title">Fresh Food</h3>
+                  <p class="collection-content">
+                    Eggplant <br />
+                    Fresh Meat
+                  </p>
+                  <a href="" class="btn btn-link-primary">
+                    Shop Now <i class="fa-solid fa-angle-right"></i>
+                  </a>
+                </div>
               </div>
             </li>
             <li class="collection-item col-4">
@@ -118,14 +124,16 @@
                 <div class="collection-img">
                   <img src="" alt="Organic egg plant" />
                 </div>
-                <h3 class="collection-title">Organic egg plant</h3>
-                <p class="collection-content">
-                  Egg & Sale <br />
-                  Festive Still Life
-                </p>
-                <a href="" class="btn btn-link-primary">
-                  Shop Now <i class="fa-solid fa-angle-right"></i>
-                </a>
+                <div class="collection-content">
+                  <h3 class="collection-title">Organic egg plant</h3>
+                  <p class="collection-content">
+                    Egg & Sale <br />
+                    Festive Still Life
+                  </p>
+                  <a href="" class="btn btn-link-primary">
+                    Shop Now <i class="fa-solid fa-angle-right"></i>
+                  </a>
+                </div>
               </div>
             </li>
           </ul>
@@ -259,159 +267,175 @@
           </div>
           <ul class="products-list row gx-2 gy-4">
             <li class="product-item col-3">
-              <a href="" class="product">
+              <a href="" class="product-link">
                 <div class="product-img">
                   <img src="" alt="Fresh Organic Fruit" />
                 </div>
-                <h4 class="product-name">Fresh Organic Fruit (50gm)</h4>
-                <div class="product-rating d-flex">
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                </div>
-                <div class="product-price">
-                  <span class="current-price">$33.00</span>
+                <div class="product-content">
+                  <h4 class="product-name">Fresh Organic Fruit (50gm)</h4>
+                  <div class="product-rating">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                  </div>
+                  <div class="product-price">
+                    <span class="current-price">$33.00</span>
+                  </div>
                 </div>
               </a>
             </li>
             <li class="product-item col-3">
-              <a href="" class="product">
+              <a href="" class="product-link">
                 <div class="product-img">
                   <img src="" alt="Fresh Grassben" />
                 </div>
-                <h4 class="product-name">Fresh Grassben</h4>
-                <div class="product-rating d-flex">
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
+                <div class="product-content">
+                  <h4 class="product-name">Fresh Grassben</h4>
+                  <div class="product-rating d-flex">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                  </div>
+                  <div class="product-price">
+                    <span class="current-price">$15.00</span>
+                    <span class="cost">$31.00</span>
+                  </div>
+                  <span class="badge bg-discount">-52%</span>
                 </div>
-                <div class="product-price">
-                  <span class="current-price">$15.00</span>
-                  <span class="cost">$31.00</span>
-                </div>
-                <span class="badge bg-discount">-52%</span>
               </a>
             </li>
             <li class="product-item col-3">
-              <a href="" class="product">
+              <a href="" class="product-link">
                 <div class="product-img">
                   <img src="" alt="Fresh Avocado" />
                 </div>
-                <h4 class="product-name">Fresh Avocado</h4>
-                <div class="product-rating d-flex">
-                  <i class="fa-solid fa-star empty"></i>
-                  <i class="fa-solid fa-star empty"></i>
-                  <i class="fa-solid fa-star empty"></i>
-                  <i class="fa-solid fa-star empty"></i>
-                  <i class="fa-solid fa-star empty"></i>
+                <div class="product-content">
+                  <h4 class="product-name">Fresh Avocado</h4>
+                  <div class="product-rating d-flex">
+                    <i class="fa-solid fa-star empty"></i>
+                    <i class="fa-solid fa-star empty"></i>
+                    <i class="fa-solid fa-star empty"></i>
+                    <i class="fa-solid fa-star empty"></i>
+                    <i class="fa-solid fa-star empty"></i>
+                  </div>
+                  <div class="product-price">
+                    <span class="current-price">$15.00</span>
+                    <span class="cost">$20.00</span>
+                  </div>
+                  <span class="badge bg-discount">-25%</span>
                 </div>
-                <div class="product-price">
-                  <span class="current-price">$15.00</span>
-                  <span class="cost">$20.00</span>
-                </div>
-                <span class="badge bg-discount">-25%</span>
               </a>
             </li>
             <li class="product-item col-3">
-              <a href="" class="product">
+              <a href="" class="product-link">
                 <div class="product-img">
                   <img src="" alt="Fresh Tomato" />
                 </div>
-                <h4 class="product-name">Fresh Tomato</h4>
-                <div class="product-rating d-flex">
-                  <i class="fa-solid fa-star empty"></i>
-                  <i class="fa-solid fa-star empty"></i>
-                  <i class="fa-solid fa-star empty"></i>
-                  <i class="fa-solid fa-star empty"></i>
-                  <i class="fa-solid fa-star empty"></i>
-                </div>
-                <div class="product-price">
-                  <span class="current-price">$55.00</span>
+                <div class="product-content">
+                  <h4 class="product-name">Fresh Tomato</h4>
+                  <div class="product-rating d-flex">
+                    <i class="fa-solid fa-star empty"></i>
+                    <i class="fa-solid fa-star empty"></i>
+                    <i class="fa-solid fa-star empty"></i>
+                    <i class="fa-solid fa-star empty"></i>
+                    <i class="fa-solid fa-star empty"></i>
+                  </div>
+                  <div class="product-price">
+                    <span class="current-price">$55.00</span>
+                  </div>
                 </div>
               </a>
             </li>
             <li class="product-item col-3">
-              <a href="" class="product">
+              <a href="" class="product-link">
                 <div class="product-img">
                   <img src="" alt="Fresh Apple" />
                 </div>
-                <h4 class="product-name">Fresh Apple (5kg)</h4>
-                <div class="product-rating d-flex">
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star empty"></i>
+                <div class="product-content">
+                  <h4 class="product-name">Fresh Apple (5kg)</h4>
+                  <div class="product-rating d-flex">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star empty"></i>
+                  </div>
+                  <div class="product-price">
+                    <span class="current-price">$14.00</span>
+                    <span class="cost">$20.00</span>
+                  </div>
+                  <span class="badge bg-discount">-30%</span>
                 </div>
-                <div class="product-price">
-                  <span class="current-price">$14.00</span>
-                  <span class="cost">$20.00</span>
-                </div>
-                <span class="badge bg-discount">-30%</span>
               </a>
             </li>
             <li class="product-item col-3">
-              <a href="" class="product">
+              <a href="" class="product-link">
                 <div class="product-img">
                   <img src="" alt="Fresh Seafoods" />
                 </div>
-                <h4 class="product-name">Fresh Seafoods</h4>
-                <div class="product-rating d-flex">
-                  <i class="fa-solid fa-star empty"></i>
-                  <i class="fa-solid fa-star empty"></i>
-                  <i class="fa-solid fa-star empty"></i>
-                  <i class="fa-solid fa-star empty"></i>
-                  <i class="fa-solid fa-star empty"></i>
+                <div class="product-content">
+                  <h4 class="product-name">Fresh Seafoods</h4>
+                  <div class="product-rating d-flex">
+                    <i class="fa-solid fa-star empty"></i>
+                    <i class="fa-solid fa-star empty"></i>
+                    <i class="fa-solid fa-star empty"></i>
+                    <i class="fa-solid fa-star empty"></i>
+                    <i class="fa-solid fa-star empty"></i>
+                  </div>
+                  <div class="product-price">
+                    <span class="current-price">$18.00</span>
+                    <span class="cost">$44.00</span>
+                  </div>
+                  <span class="badge bg-discount">-59%</span>
                 </div>
-                <div class="product-price">
-                  <span class="current-price">$18.00</span>
-                  <span class="cost">$44.00</span>
-                </div>
-                <span class="badge bg-discount">-59%</span>
               </a>
             </li>
             <li class="product-item col-3">
-              <a href="" class="product">
+              <a href="" class="product-link">
                 <div class="product-img">
                   <img src="" alt="Fresh Blueberry" />
                 </div>
-                <h4 class="product-name">Fresh Blueberry</h4>
-                <div class="product-rating d-flex">
-                  <i class="fa-solid fa-star empty"></i>
-                  <i class="fa-solid fa-star empty"></i>
-                  <i class="fa-solid fa-star empty"></i>
-                  <i class="fa-solid fa-star empty"></i>
-                  <i class="fa-solid fa-star empty"></i>
+                <div class="product-content">
+                  <h4 class="product-name">Fresh Blueberry</h4>
+                  <div class="product-rating d-flex">
+                    <i class="fa-solid fa-star empty"></i>
+                    <i class="fa-solid fa-star empty"></i>
+                    <i class="fa-solid fa-star empty"></i>
+                    <i class="fa-solid fa-star empty"></i>
+                    <i class="fa-solid fa-star empty"></i>
+                  </div>
+                  <div class="product-price">
+                    <span class="current-price">$35.00</span>
+                    <span class="cost">$51.00</span>
+                  </div>
+                  <span class="badge bg-discount">-31%</span>
                 </div>
-                <div class="product-price">
-                  <span class="current-price">$35.00</span>
-                  <span class="cost">$51.00</span>
-                </div>
-                <span class="badge bg-discount">-31%</span>
               </a>
             </li>
             <li class="product-item col-3">
-              <a href="" class="product">
+              <a href="" class="product-link">
                 <div class="product-img">
                   <img src="" alt="Fresh Guava" />
                 </div>
-                <h4 class="product-name">Sp. Red Fresh Guava</h4>
-                <div class="product-rating d-flex">
-                  <i class="fa-solid fa-star empty"></i>
-                  <i class="fa-solid fa-star empty"></i>
-                  <i class="fa-solid fa-star empty"></i>
-                  <i class="fa-solid fa-star empty"></i>
-                  <i class="fa-solid fa-star empty"></i>
+                <div class="product-content">
+                  <h4 class="product-name">Sp. Red Fresh Guava</h4>
+                  <div class="product-rating d-flex">
+                    <i class="fa-solid fa-star empty"></i>
+                    <i class="fa-solid fa-star empty"></i>
+                    <i class="fa-solid fa-star empty"></i>
+                    <i class="fa-solid fa-star empty"></i>
+                    <i class="fa-solid fa-star empty"></i>
+                  </div>
+                  <div class="product-price">
+                    <span class="current-price">$30.00</span>
+                    <span class="cost">$44.00</span>
+                  </div>
+                  <span class="badge bg-discount">-32%</span>
                 </div>
-                <div class="product-price">
-                  <span class="current-price">$30.00</span>
-                  <span class="cost">$44.00</span>
-                </div>
-                <span class="badge bg-discount">-32%</span>
               </a>
             </li>
           </ul>
@@ -438,81 +462,89 @@
           </div>
           <ul class="products-list row gx-2 gy-4">
             <li class="product-item col-3">
-              <a href="" class="product">
+              <a href="" class="product-link">
                 <div class="product-img">
                   <img src="" alt="Fresh Tomato" />
                 </div>
-                <h4 class="product-name">Fresh Tomato</h4>
-                <div class="product-rating d-flex">
-                  <i class="fa-solid fa-star empty"></i>
-                  <i class="fa-solid fa-star empty"></i>
-                  <i class="fa-solid fa-star empty"></i>
-                  <i class="fa-solid fa-star empty"></i>
-                  <i class="fa-solid fa-star empty"></i>
-                </div>
-                <div class="product-price">
-                  <span class="current-price">$55.00</span>
+                <div class="product-content">
+                  <h4 class="product-name">Fresh Tomato</h4>
+                  <div class="product-rating d-flex">
+                    <i class="fa-solid fa-star empty"></i>
+                    <i class="fa-solid fa-star empty"></i>
+                    <i class="fa-solid fa-star empty"></i>
+                    <i class="fa-solid fa-star empty"></i>
+                    <i class="fa-solid fa-star empty"></i>
+                  </div>
+                  <div class="product-price">
+                    <span class="current-price">$55.00</span>
+                  </div>
                 </div>
               </a>
             </li>
             <li class="product-item col-3">
-              <a href="" class="product">
+              <a href="" class="product-link">
                 <div class="product-img">
                   <img src="" alt="Fresh Guava" />
                 </div>
-                <h4 class="product-name">Sp. Red Fresh Guava</h4>
-                <div class="product-rating d-flex">
-                  <i class="fa-solid fa-star empty"></i>
-                  <i class="fa-solid fa-star empty"></i>
-                  <i class="fa-solid fa-star empty"></i>
-                  <i class="fa-solid fa-star empty"></i>
-                  <i class="fa-solid fa-star empty"></i>
+                <div class="product-content">
+                  <h4 class="product-name">Sp. Red Fresh Guava</h4>
+                  <div class="product-rating d-flex">
+                    <i class="fa-solid fa-star empty"></i>
+                    <i class="fa-solid fa-star empty"></i>
+                    <i class="fa-solid fa-star empty"></i>
+                    <i class="fa-solid fa-star empty"></i>
+                    <i class="fa-solid fa-star empty"></i>
+                  </div>
+                  <div class="product-price">
+                    <span class="current-price">$30.00</span>
+                    <span class="cost">$44.00</span>
+                  </div>
+                  <span class="badge bg-discount">-32%</span>
                 </div>
-                <div class="product-price">
-                  <span class="current-price">$30.00</span>
-                  <span class="cost">$44.00</span>
-                </div>
-                <span class="badge bg-discount">-32%</span>
               </a>
             </li>
             <li class="product-item col-3">
-              <a href="" class="product">
+              <a href="" class="product-link">
                 <div class="product-img">
                   <img src="" alt="Organic Coconet" />
                 </div>
-                <h4 class="product-name">Organic Coconet</h4>
-                <div class="product-rating d-flex">
-                  <i class="fa-solid fa-star empty"></i>
-                  <i class="fa-solid fa-star empty"></i>
-                  <i class="fa-solid fa-star empty"></i>
-                  <i class="fa-solid fa-star empty"></i>
-                  <i class="fa-solid fa-star empty"></i>
+                <div class="product-content">
+                  <h4 class="product-name">Organic Coconet</h4>
+                  <div class="product-rating d-flex">
+                    <i class="fa-solid fa-star empty"></i>
+                    <i class="fa-solid fa-star empty"></i>
+                    <i class="fa-solid fa-star empty"></i>
+                    <i class="fa-solid fa-star empty"></i>
+                    <i class="fa-solid fa-star empty"></i>
+                  </div>
+                  <div class="product-price">
+                    <span class="current-price">$35.00</span>
+                    <span class="cost">$44.00</span>
+                  </div>
+                  <span class="badge bg-discount">-32%</span>
                 </div>
-                <div class="product-price">
-                  <span class="current-price">$35.00</span>
-                  <span class="cost">$44.00</span>
-                </div>
-                <span class="badge bg-discount">-32%</span>
               </a>
             </li>
             <li class="product-item col-3">
-              <a href="" class="product">
+              <a href="" class="product-link">
                 <div class="product-img">
                   <img src="" alt="Fruit Banana" />
                 </div>
-                <h4 class="product-name">Fruit Banana 100% Organic</h4>
-                <div class="product-rating d-flex">
-                  <i class="fa-solid fa-star empty"></i>
-                  <i class="fa-solid fa-star empty"></i>
-                  <i class="fa-solid fa-star empty"></i>
-                  <i class="fa-solid fa-star empty"></i>
-                  <i class="fa-solid fa-star empty"></i>
+                <div class="product-content">
+                  <h4 class="product-name">Fruit Banana 100% Organic</h4>
+                  <div class="product-rating d-flex">
+                    <i class="fa-solid fa-star empty"></i>
+                    <i class="fa-solid fa-star empty"></i>
+                    <i class="fa-solid fa-star empty"></i>
+                    <i class="fa-solid fa-star empty"></i>
+                    <i class="fa-solid fa-star empty"></i>
+                  </div>
+                  <div class="product-price">
+                    <span class="current-price">$22.00</span>
+                    <span class="cost">$44.00</span>
+                  </div>
+                  <span class="badge bg-discount">-20%</span>
                 </div>
-                <div class="product-price">
-                  <span class="current-price">$22.00</span>
-                  <span class="cost">$44.00</span>
-                </div>
-                <span class="badge bg-discount">-20%</span>
               </a>
             </li>
           </ul>
