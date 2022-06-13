@@ -13,6 +13,7 @@
 }
 
 body {
+  position: relative;
   font-family: "Poppins", sans-serif;
   width: 100%;
 }
@@ -607,7 +608,7 @@ section {
 
 /* HEADER */
 header {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
