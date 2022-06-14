@@ -15,9 +15,9 @@
 
 body {
   position: relative;
-  font-family: var(--font-family);
   width: 100%;
   line-height: 1.5;
+  font-family: var(--font-family);
   color: var(--text-color);
 }
 
@@ -50,7 +50,6 @@ img {
   margin: 0 auto;
 }
 
-a.btn,
 .btn {
   display: inline-block;
   padding: 14px 20px;
@@ -58,12 +57,12 @@ a.btn,
   font-family: var(--font-family);
   font-weight: 700;
   font-size: 13px;
-  color: var(--primary-text-color);
-  border-radius: 24px;
+  text-align: center;
+  color: var(--text-color);
   outline: none;
+  border-radius: 24px;
   border: 1px solid transparent;
   cursor: pointer;
-  text-align: center;
   user-select: none;
   white-space: nowrap;
   transition: 0.2s ease-in-out;
@@ -144,6 +143,7 @@ a.btn,
 }
 
 .btn.btn-icon-sm {
+  padding: 0;
   width: 24px;
   height: 24px;
   background-color: transparent;
@@ -291,18 +291,7 @@ input.form-control {
   width: 100%;
 }
 
-.row .col-1,
-.row .col-2,
-.row .col-3,
-.row .col-4,
-.row .col-5,
-.row .col-6,
-.row .col-7,
-.row .col-8,
-.row .col-9,
-.row .col-10,
-.row .col-11,
-.row .col-12 {
+[class*="col"] {
   padding: 0 10px;
 }
 
@@ -310,18 +299,7 @@ input.form-control {
   margin: 0;
 }
 
-.row.no-gutter .col-1,
-.row.no-gutter .col-2,
-.row.no-gutter .col-3,
-.row.no-gutter .col-2,
-.row.no-gutter .col-5,
-.row.no-gutter .col-6,
-.row.no-gutter .col-7,
-.row.no-gutter .col-8,
-.row.no-gutter .col-9,
-.row.no-gutter .col-10,
-.row.no-gutter .col-11,
-.row.no-gutter .col-12 {
+.row.no-gutter [class*="col"] {
   padding: 0;
 }
 
