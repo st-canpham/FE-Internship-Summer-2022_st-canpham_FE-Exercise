@@ -1,18 +1,18 @@
-.product-link {
+.product {
   position: relative;
 
-  .product-img {
+  &-img {
     display: flex;
     height: 385px;
     margin-bottom: 16px;
   }
 
-  .product-name {
+  &-name {
     font-weight: map-get($font-weight, light);
     font-size: map-get($font-size, md);
   }
 
-  .product-price {
+  &-price {
     display: flex;
     justify-content: space-between;
     margin-bottom: 12px;
@@ -31,5 +31,32 @@
     position: absolute;
     top: 30px;
     left: 27px;
+  }
+}
+
+@include responsive_mobile {
+  .product {
+    &-img {
+      height: 227px;
+      margin-bottom: 0;
+    }
+
+    &-name {
+      font-size: map-get($font-size, xs);
+      margin-bottom: 3px;
+    }
+
+    &-price {
+      font-size: 10px;
+    }
+
+    &-info {
+      padding: 4px;
+    }
+
+    .badge {
+      top: 12px;
+      left: 9px;
+    }
   }
 }

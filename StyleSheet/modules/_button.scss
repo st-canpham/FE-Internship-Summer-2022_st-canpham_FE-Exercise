@@ -65,3 +65,10 @@
     background-color: map-get($colors, primary);
   }
 }
+
+@include responsive_mobile {
+  .btn {
+    height: 20px;
+    padding: 0 15px;
+  }
+}

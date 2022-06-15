@@ -4,3 +4,10 @@
     margin-right: 0;
   }
 }
+
+$mobile: 768px;
+@mixin responsive_mobile() {
+  @media only screen and (max-width: #{$mobile}) {
+    @content;
+  }
+}

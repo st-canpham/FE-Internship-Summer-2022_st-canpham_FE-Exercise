@@ -1,0 +1,32 @@
+.container {
+  max-width: 1172px;
+  padding: 0 10px;
+  margin: 0 auto;
+}
+
+.page-section {
+  padding: $padding-section 0;
+}
+
+.section-heading {
+  @extend %flex-between-center;
+  margin-bottom: 39px;
+
+  .section-title {
+    flex: 1;
+    font-weight: map-get($font-weight, light);
+    font-size: map-get($font-size, xxxl);
+  }
+}
+
+@include responsive_mobile {
+  .container {
+    padding: 0 24px;
+  }
+
+  .section-heading {
+    .section-title {
+      font-size: map-get($font-size, lg);
+    }
+  }
+}

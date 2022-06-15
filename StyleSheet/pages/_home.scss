@@ -18,24 +18,24 @@
   .banner-content {
     padding: 222px 0 0 96px;
     color: map-get($colors, white);
+  }
 
-    .banner-title {
-      width: 403px;
-      margin-bottom: 24px;
-      line-height: 73px;
-      font-size: 72px;
-    }
+  .banner-title {
+    width: 403px;
+    margin-bottom: 24px;
+    line-height: 73px;
+    font-size: 72px;
+  }
 
-    .banner-link {
-      @extend %flex-aligns-center;
+  .banner-link {
+    @extend %flex-aligns-center;
 
-      &-text {
-        margin-left: 21px;
-        text-decoration: underline;
-        font-size: map-get($font-size, xxl);
-        font-weight: map-get($font-weight, bold);
-        color: map-get($colors, white);
-      }
+    &-text {
+      margin-left: 21px;
+      text-decoration: underline;
+      font-size: map-get($font-size, xxl);
+      font-weight: map-get($font-weight, bold);
+      color: map-get($colors, white);
     }
   }
 
@@ -86,6 +86,7 @@
   &-content {
     position: absolute;
     @extend %flex-justify-end;
+    align-items: flex-start;
     flex-direction: column;
     left: 40px;
     bottom: 53px;
@@ -157,5 +158,54 @@
       width: 175px;
       margin-left: 40px;
     }
+  }
+}
+
+@include responsive_mobile {
+  .section-banner {
+    background-image: linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0.8) 0%,
+        rgba(0, 0, 0, 0.5) 100%
+      ),
+      url("../../img/fashion-banner-mobile.png");
+    height: 740px;
+
+    .offers-list {
+      display: none;
+    }
+
+    .banner-content {
+      padding-left: 24px;
+    }
+
+    .banner-title {
+      font-size: 48px;
+      width: 100%;
+    }
+
+    &::after {
+      display: none;
+    }
+  }
+
+  .category {
+    &-img {
+      height: 225px;
+    }
+
+    &-content {
+      bottom: 16px;
+      left: 16px;
+    }
+
+    &-title {
+      height: 55px;
+      font-size: map-get($font-size, md);
+    }
+  }
+
+  .section-subcribe {
+    height: 217px;
   }
 }

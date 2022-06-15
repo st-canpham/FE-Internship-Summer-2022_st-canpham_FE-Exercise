@@ -1,53 +1,65 @@
 footer {
   background-color: map-get($colors, primary);
   color: map-get($colors, white);
-}
 
-.footer-top {
-  display: flex;
-  padding: 40px 0;
-
-  &-left {
-    @extend %flex-justify-between;
-    flex-direction: column;
-    width: 375px;
-    margin-right: 170px;
-  }
-
-  .logo {
-    margin-bottom: 24px;
-  }
-
-  .socials-list {
+  .footer-top {
     display: flex;
-    align-items: center;
+    padding: 40px 0;
 
-    .social-item {
-      @include evenly-space(33px);
+    &-left {
+      @extend %flex-justify-between;
+      flex-direction: column;
+      width: 375px;
+      margin-right: 170px;
+    }
+
+    .logo {
+      margin-bottom: 24px;
+    }
+
+    .socials-list {
+      display: flex;
+      align-items: center;
+
+      .social-item {
+        @include evenly-space(33px);
+      }
+    }
+
+    &-right {
+      flex: 1;
+    }
+
+    .option-title {
+      font-size: map-get($font-size, md);
+      font-weight: map-get($font-weight, bold);
+      margin-bottom: 19px;
+    }
+
+    .option-item {
+      padding: 4px 0;
+
+      a {
+        color: map-get($colors, white);
+      }
     }
   }
 
-  &-right {
-    flex: 1;
-  }
-
-  .option-title {
-    font-size: map-get($font-size, md);
-    font-weight: map-get($font-weight, bold);
-    margin-bottom: 19px;
-  }
-
-  .option-item {
-    padding: 4px 0;
-
-    a {
-      color: map-get($colors, white);
-    }
+  .footer-copyright {
+    padding: 24px 0;
+    border-top: 1px solid map-get($colors, white);
+    text-align: center;
   }
 }
 
-.footer-copyright {
-  padding: 24px 0;
-  border-top: 1px solid map-get($colors, white);
-  text-align: center;
+@include responsive_mobile {
+  footer {
+    .footer-top {
+      flex-direction: column;
+
+      &-left {
+        width: 100%;
+      }
+    }
+  }
 }
