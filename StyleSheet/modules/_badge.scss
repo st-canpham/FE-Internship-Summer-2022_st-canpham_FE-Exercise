@@ -1,0 +1,11 @@
+.badge {
+  padding: 6px 10px;
+  border-radius: 20px;
+  font-weight: map-get($font-weight, bold);
+  font-size: map-get($font-size, xs);
+
+  &.badge-primary {
+    color: map-get($colors, white);
+    background-color: map-get($colors, danger);
+  }
+}

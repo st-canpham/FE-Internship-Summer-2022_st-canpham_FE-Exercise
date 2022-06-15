@@ -1,0 +1,62 @@
+%flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+%flex-aligns-center {
+  display: flex;
+  align-items: center;
+}
+
+%flex-aligns-end {
+  display: flex;
+  align-items: flex-end;
+}
+
+%flex-aligns-start {
+  display: flex;
+  align-items: flex-start;
+}
+
+%flex-center-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+%flex-justify-between {
+  display: flex;
+  justify-content: space-between;
+}
+
+%flex-justify-end {
+  display: flex;
+  justify-content: flex-end;
+}
+
+%flex-justify-start {
+  display: flex;
+  justify-content: flex-start;
+}
+
+%flex-end-center {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+%boder-transparent {
+  border: 1px solid transparent;
+}
+
+%background-image_default {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+%absolute-fit {
+  position: absolute;
+  inset: 0;
+}

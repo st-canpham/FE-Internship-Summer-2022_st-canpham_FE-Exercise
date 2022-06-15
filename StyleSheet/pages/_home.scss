@@ -1,0 +1,161 @@
+.section-banner {
+  position: relative;
+  background-image: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.8) 0%,
+      rgba(0, 0, 0, 0.5) 100%
+    ),
+    url("../img/fashion-banner-1.png");
+  height: $banner-height;
+  @extend %background-image_default;
+
+  .banner-inner {
+    @extend %flex-justify-between;
+    flex-direction: column;
+    height: $banner-height;
+  }
+
+  .banner-content {
+    padding: 222px 0 0 96px;
+    color: map-get($colors, white);
+
+    .banner-title {
+      width: 403px;
+      margin-bottom: 24px;
+      line-height: 73px;
+      font-size: 72px;
+    }
+
+    .banner-link {
+      @extend %flex-aligns-center;
+
+      &-text {
+        margin-left: 21px;
+        text-decoration: underline;
+        font-size: map-get($font-size, xxl);
+        font-weight: map-get($font-weight, bold);
+        color: map-get($colors, white);
+      }
+    }
+  }
+
+  .offers-list {
+    display: flex;
+    padding: 0 0 calc(24px + $padding-section) 96px;
+    z-index: 1;
+
+    .offer-item {
+      margin-right: 48px;
+      max-width: 236px;
+    }
+
+    .offer-icon {
+      @extend %flex-center;
+      flex-shrink: 0;
+      background-color: #fff3df;
+    }
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 125px;
+    width: 75%;
+    border-top-right-radius: 70px;
+    background-color: map-get($colors, white);
+  }
+}
+
+.category {
+  position: relative;
+
+  &-img {
+    position: relative;
+    height: 359px;
+
+    &::after {
+      @extend %absolute-fit;
+      content: "";
+      background-color: #333333;
+      opacity: 0.5;
+    }
+  }
+
+  &-content {
+    position: absolute;
+    @extend %flex-justify-end;
+    flex-direction: column;
+    left: 40px;
+    bottom: 53px;
+    color: map-get($colors, white);
+
+    .badge {
+      margin-bottom: 8px;
+    }
+  }
+
+  &-title {
+    height: 91px;
+    font-size: map-get($font-size, xxl);
+    font-weight: map-get($font-weight, regular);
+  }
+}
+
+.section-benefits {
+  background-color: #f7f7f7;
+
+  .benefit-item {
+    &:hover svg path {
+      fill: map-get($colors, primary);
+      transition: 0.2s ease-in-out;
+    }
+
+    &:hover .media-title {
+      color: map-get($colors, primary);
+      transition: 0.2s ease-in-out;
+    }
+  }
+
+  .section-heading {
+    margin-bottom: 50px;
+  }
+
+  .benefit-icon {
+    @extend %flex-center;
+    background-color: map-get($colors, white);
+  }
+}
+
+.section-subcribe {
+  @extend %flex-center;
+  height: 241px;
+  background-image: linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0.7) 33.28%,
+      rgba(0, 0, 0, 0) 94.05%
+    ),
+    url("../img/fashion-footer.png");
+  @extend %background-image_default;
+
+  .subcribe {
+    align-items: center;
+
+    &-title {
+      font-size: map-get($font-size, xxl);
+      font-weight: map-get($font-weight, regular);
+      color: map-get($colors, white);
+    }
+
+    &-form {
+      @extend %flex-center;
+    }
+
+    &-btn {
+      flex-shrink: 0;
+      width: 175px;
+      margin-left: 40px;
+    }
+  }
+}

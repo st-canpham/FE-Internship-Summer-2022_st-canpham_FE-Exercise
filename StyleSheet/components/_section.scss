@@ -1,0 +1,14 @@
+.page-section {
+  padding: $padding-section 0;
+}
+
+.section-heading {
+  @extend %flex-center-between;
+  margin-bottom: 39px;
+
+  .section-title {
+    flex: 1;
+    font-weight: map-get($font-weight, light);
+    font-size: map-get($font-size, xxxl);
+  }
+}

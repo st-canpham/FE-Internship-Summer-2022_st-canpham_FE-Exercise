@@ -1,0 +1,9 @@
+.logo-link {
+  @extend %flex-aligns-center;
+  font-size: 19px;
+  color: map-get($colors, white);
+
+  .logo-icon {
+    margin-right: 22px;
+  }
+}

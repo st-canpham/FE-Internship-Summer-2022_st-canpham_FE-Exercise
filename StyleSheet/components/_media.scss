@@ -1,0 +1,41 @@
+.media {
+  display: flex;
+
+  &-img {
+    flex-shrink: 0;
+    margin-right: 21px;
+    width: 68px;
+    height: 68px;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  &-title {
+    margin-bottom: 4px;
+  }
+
+  &-content {
+    font-size: map-get($font-size, xs);
+    color: map-get($colors, description);
+  }
+
+  &-sm {
+    .media-img {
+      width: 36px;
+      height: 36px;
+    }
+  }
+
+  &.media-vertical {
+    flex-direction: column;
+
+    .media-img {
+      margin-right: 0;
+      margin-bottom: 46px;
+    }
+
+    .media-title {
+      margin-bottom: 16px;
+    }
+  }
+}
