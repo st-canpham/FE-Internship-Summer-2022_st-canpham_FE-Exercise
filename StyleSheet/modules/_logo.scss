@@ -1,9 +1,25 @@
-.logo-link {
-  @extend %flex-aligns-center;
-  font-size: 19px;
-  color: map-get($colors, white);
+.logo {
+  &-link {
+    @extend %flex-aligns-center;
+    font-size: 19px;
+    color: map-get($colors, white);
+  }
 
-  .logo-icon {
+  &-icon {
     margin-right: 22px;
+  }
+}
+
+@include responsive_mobile {
+  .logo {
+    &-link {
+      font-size: 18px;
+    }
+
+    &-icon {
+      margin-right: 16px;
+      width: 38px;
+      height: 32px;
+    }
   }
 }

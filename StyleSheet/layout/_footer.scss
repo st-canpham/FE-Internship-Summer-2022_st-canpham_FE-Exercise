@@ -22,7 +22,7 @@ footer {
       align-items: center;
 
       .social-item {
-        @include evenly-space(33px);
+        @include evenly-space-x(33px);
       }
     }
 
@@ -56,9 +56,26 @@ footer {
   footer {
     .footer-top {
       flex-direction: column;
+      padding: 24px 0;
 
       &-left {
         width: 100%;
+      }
+
+      .socials-list {
+        display: none;
+      }
+
+      .about {
+        margin-bottom: 48px;
+      }
+
+      .option-title {
+        margin-bottom: 14px;
+      }
+
+      .options-list {
+        margin-bottom: 24px;
       }
     }
   }

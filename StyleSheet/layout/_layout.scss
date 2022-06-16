@@ -11,12 +11,12 @@
 .section-heading {
   @extend %flex-between-center;
   margin-bottom: 39px;
+}
 
-  .section-title {
-    flex: 1;
-    font-weight: map-get($font-weight, light);
-    font-size: map-get($font-size, xxxl);
-  }
+.section-title {
+  flex: 1;
+  font-weight: map-get($font-weight, light);
+  font-size: map-get($font-size, xxxl);
 }
 
 @include responsive_mobile {
@@ -24,9 +24,18 @@
     padding: 0 24px;
   }
 
+  .page-section {
+    padding: 24px 0;
+  }
+
   .section-heading {
-    .section-title {
-      font-size: map-get($font-size, lg);
+    margin-bottom: 16px;
+
+    .btn {
+      border: 1px solid transparent;
     }
+  }
+  .section-title {
+    font-size: map-get($font-size, lg);
   }
 }

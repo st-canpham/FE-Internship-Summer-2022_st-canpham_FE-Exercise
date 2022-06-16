@@ -1,7 +1,14 @@
-@mixin evenly-space($space) {
+@mixin evenly-space-x($space) {
   margin-right: $space;
   &:last-child {
     margin-right: 0;
+  }
+}
+
+@mixin evenly-space-y($space) {
+  margin-bottom: $space;
+  &:last-child {
+    margin-bottom: 0;
   }
 }
 

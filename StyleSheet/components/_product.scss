@@ -3,7 +3,6 @@
 
   &-img {
     display: flex;
-    height: 385px;
     margin-bottom: 16px;
   }
 
@@ -37,7 +36,6 @@
 @include responsive_mobile {
   .product {
     &-img {
-      height: 227px;
       margin-bottom: 0;
     }
 

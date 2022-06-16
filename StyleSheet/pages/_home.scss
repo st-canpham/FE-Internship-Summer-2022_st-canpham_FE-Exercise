@@ -1,4 +1,6 @@
+$banner-height: 800px;
 .section-banner {
+  padding: 0;
   position: relative;
   background-image: linear-gradient(
       180deg,
@@ -41,7 +43,7 @@
 
   .offers-list {
     display: flex;
-    padding: 0 0 calc(24px + $padding-section) 96px;
+    padding: 0 0 24px 96px;
     z-index: 1;
 
     .offer-item {
@@ -131,7 +133,6 @@
 
 .section-subcribe {
   @extend %flex-center;
-  height: 241px;
   background-image: linear-gradient(
       90deg,
       rgba(0, 0, 0, 0.7) 33.28%,
@@ -141,6 +142,7 @@
   @extend %background-image_default;
 
   .subcribe {
+    height: 241px;
     align-items: center;
 
     &-title {
@@ -169,19 +171,32 @@
         rgba(0, 0, 0, 0.5) 100%
       ),
       url("../../img/fashion-banner-mobile.png");
-    height: 740px;
+    height: 812px;
 
     .offers-list {
       display: none;
     }
 
     .banner-content {
+      padding-top: 343px;
       padding-left: 24px;
     }
 
     .banner-title {
       font-size: 48px;
       width: 100%;
+    }
+
+    .banner-link {
+      .btn {
+        width: 32px;
+        height: 32px;
+      }
+
+      &-text {
+        margin-left: 16px;
+        font-size: 14px;
+      }
     }
 
     &::after {
@@ -205,7 +220,69 @@
     }
   }
 
+  .section-benefits {
+    .section-heading {
+      margin-bottom: 36px;
+    }
+
+    .benefit-item {
+      @include evenly-space-y(16px);
+    }
+    .benefit-item .media {
+      flex-direction: row;
+
+      .media-img {
+        margin-bottom: 0;
+        margin-right: 16px;
+      }
+
+      .media-title {
+        margin-bottom: 8px;
+        font-size: map-get($font-size, xs);
+      }
+
+      .media-content {
+        font-size: 10px;
+      }
+    }
+  }
+
   .section-subcribe {
-    height: 217px;
+    display: block;
+    background-image: linear-gradient(
+        90deg,
+        rgba(0, 0, 0, 0.7) 33.28%,
+        rgba(0, 0, 0, 0) 94.05%
+      ),
+      url("../../img/fashion-footer-mobile.png");
+
+    .subcribe {
+      height: 217px;
+      padding: 24px 0;
+      &-title {
+        font-size: 14px;
+        width: 200px;
+      }
+
+      &-form {
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-end;
+
+        input {
+          height: 32px;
+          padding: 6px 12px;
+          font-size: 12px;
+        }
+      }
+
+      &-btn {
+        margin-left: 0;
+        margin-top: 16px;
+        width: 120px;
+        height: 32px;
+        font-size: 13px;
+      }
+    }
   }
 }

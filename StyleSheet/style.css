@@ -30,18 +30,18 @@ img {
   object-position: center;
 }
 
-.section-subcribe .subcribe-form, .section-subcribe, .section-benefits .benefit-icon, .section-banner .offers-list .offer-icon, .btn[class*=btn-icon] {
+.section-subcribe .subcribe-form, .section-subcribe, .section-benefits .benefit-icon, .section-banner .offers-list .offer-icon, .btn[class*=btn-icon], .btn {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.section-banner .banner-link, .nav-list, .logo-link {
+.section-banner .banner-link, header .nav-list, .logo-link {
   display: flex;
   align-items: center;
 }
 
-.section-heading, .header-content {
+.section-heading, header .header-content {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -57,7 +57,7 @@ img {
   justify-content: flex-end;
 }
 
-.actions-list {
+header .actions-list {
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -75,7 +75,6 @@ img {
 }
 
 .btn {
-  display: inline-block;
   height: 48px;
   padding: 14px 20px;
   font-family: "Poppins", sans-serif;
@@ -134,16 +133,27 @@ img {
   .btn {
     height: 20px;
     padding: 0 15px;
+    font-size: 10px;
   }
 }
 .logo-link {
   font-size: 19px;
   color: #ffffff;
 }
-.logo-link .logo-icon {
+.logo-icon {
   margin-right: 22px;
 }
 
+@media only screen and (max-width: 768px) {
+  .logo-link {
+    font-size: 18px;
+  }
+  .logo-icon {
+    margin-right: 16px;
+    width: 38px;
+    height: 32px;
+  }
+}
 .badge {
   padding: 6px 10px;
   border-radius: 20px;
@@ -270,30 +280,30 @@ header {
   width: 100%;
   z-index: 100;
 }
-
-.header-content {
+header .header-content {
   height: 48px;
 }
-
-.nav-list {
+header .nav-list {
   font-size: 18px;
   font-weight: 700;
 }
-.nav-list .nav-item {
+header .nav-list .nav-item {
   margin-right: 96px;
 }
-.nav-list .nav-item:last-child {
+header .nav-list .nav-item:last-child {
   margin-right: 0;
 }
-.nav-list .nav-link {
+header .nav-list .nav-link {
   color: #fbb03b;
 }
-
-.actions-list .action-item {
+header .action-item {
   margin-right: 24px;
 }
-.actions-list .action-item:last-child {
+header .action-item:last-child {
   margin-right: 0;
+}
+header .actions-list-mobile {
+  display: none;
 }
 
 @media only screen and (max-width: 768px) {
@@ -311,7 +321,13 @@ header {
     color: #333333;
   }
   header .logo-link .logo-icon path {
-    fill: black;
+    fill: #000000;
+  }
+  header .actions-list {
+    display: none;
+  }
+  header .actions-list.actions-list-mobile {
+    display: flex;
   }
 }
 footer {
@@ -363,9 +379,22 @@ footer .footer-copyright {
 @media only screen and (max-width: 768px) {
   footer .footer-top {
     flex-direction: column;
+    padding: 24px 0;
   }
   footer .footer-top-left {
     width: 100%;
+  }
+  footer .footer-top .socials-list {
+    display: none;
+  }
+  footer .footer-top .about {
+    margin-bottom: 48px;
+  }
+  footer .footer-top .option-title {
+    margin-bottom: 14px;
+  }
+  footer .footer-top .options-list {
+    margin-bottom: 24px;
   }
 }
 .container {
@@ -381,7 +410,8 @@ footer .footer-copyright {
 .section-heading {
   margin-bottom: 39px;
 }
-.section-heading .section-title {
+
+.section-title {
   flex: 1;
   font-weight: 300;
   font-size: 32px;
@@ -391,7 +421,16 @@ footer .footer-copyright {
   .container {
     padding: 0 24px;
   }
-  .section-heading .section-title {
+  .page-section {
+    padding: 24px 0;
+  }
+  .section-heading {
+    margin-bottom: 16px;
+  }
+  .section-heading .btn {
+    border: 1px solid transparent;
+  }
+  .section-title {
     font-size: 18px;
   }
 }
@@ -412,6 +451,7 @@ footer .footer-copyright {
 }
 
 .section-banner {
+  padding: 0;
   position: relative;
   background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.5) 100%), url("../img/fashion-banner-1.png");
   height: 800px;
@@ -439,7 +479,7 @@ footer .footer-copyright {
 }
 .section-banner .offers-list {
   display: flex;
-  padding: 0 0 72px 96px;
+  padding: 0 0 24px 96px;
   z-index: 1;
 }
 .section-banner .offers-list .offer-item {
@@ -509,10 +549,10 @@ footer .footer-copyright {
 }
 
 .section-subcribe {
-  height: 241px;
   background-image: linear-gradient(90deg, rgba(0, 0, 0, 0.7) 33.28%, rgba(0, 0, 0, 0) 94.05%), url("../img/fashion-footer.png");
 }
 .section-subcribe .subcribe {
+  height: 241px;
   align-items: center;
 }
 .section-subcribe .subcribe-title {
@@ -529,17 +569,26 @@ footer .footer-copyright {
 @media only screen and (max-width: 768px) {
   .section-banner {
     background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.5) 100%), url("../../img/fashion-banner-mobile.png");
-    height: 740px;
+    height: 812px;
   }
   .section-banner .offers-list {
     display: none;
   }
   .section-banner .banner-content {
+    padding-top: 343px;
     padding-left: 24px;
   }
   .section-banner .banner-title {
     font-size: 48px;
     width: 100%;
+  }
+  .section-banner .banner-link .btn {
+    width: 32px;
+    height: 32px;
+  }
+  .section-banner .banner-link-text {
+    margin-left: 16px;
+    font-size: 14px;
   }
   .section-banner::after {
     display: none;
@@ -555,8 +604,57 @@ footer .footer-copyright {
     height: 55px;
     font-size: 16px;
   }
+  .section-benefits .section-heading {
+    margin-bottom: 36px;
+  }
+  .section-benefits .benefit-item {
+    margin-bottom: 16px;
+  }
+  .section-benefits .benefit-item:last-child {
+    margin-bottom: 0;
+  }
+  .section-benefits .benefit-item .media {
+    flex-direction: row;
+  }
+  .section-benefits .benefit-item .media .media-img {
+    margin-bottom: 0;
+    margin-right: 16px;
+  }
+  .section-benefits .benefit-item .media .media-title {
+    margin-bottom: 8px;
+    font-size: 12px;
+  }
+  .section-benefits .benefit-item .media .media-content {
+    font-size: 10px;
+  }
   .section-subcribe {
+    display: block;
+    background-image: linear-gradient(90deg, rgba(0, 0, 0, 0.7) 33.28%, rgba(0, 0, 0, 0) 94.05%), url("../../img/fashion-footer-mobile.png");
+  }
+  .section-subcribe .subcribe {
     height: 217px;
+    padding: 24px 0;
+  }
+  .section-subcribe .subcribe-title {
+    font-size: 14px;
+    width: 200px;
+  }
+  .section-subcribe .subcribe-form {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-end;
+  }
+  .section-subcribe .subcribe-form input {
+    height: 32px;
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+  .section-subcribe .subcribe-btn {
+    margin-left: 0;
+    margin-top: 16px;
+    width: 120px;
+    height: 32px;
+    font-size: 13px;
   }
 }
 .product {
@@ -564,7 +662,6 @@ footer .footer-copyright {
 }
 .product-img {
   display: flex;
-  height: 385px;
   margin-bottom: 16px;
 }
 .product-name {
@@ -591,7 +688,6 @@ footer .footer-copyright {
 
 @media only screen and (max-width: 768px) {
   .product-img {
-    height: 227px;
     margin-bottom: 0;
   }
   .product-name {
