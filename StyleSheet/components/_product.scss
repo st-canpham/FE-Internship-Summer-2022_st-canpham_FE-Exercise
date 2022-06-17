@@ -1,0 +1,60 @@
+.product {
+  position: relative;
+
+  &-img {
+    display: flex;
+    margin-bottom: 16px;
+  }
+
+  &-name {
+    font-weight: map-get($font-weight, light);
+    font-size: map-get($font-size, md);
+  }
+
+  &-price {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    font-size: map-get($font-size, xl);
+
+    .price-discount {
+      color: map-get($colors, danger);
+
+      & + .price-current {
+        color: #cecece;
+      }
+    }
+  }
+
+  .badge {
+    position: absolute;
+    top: 30px;
+    left: 27px;
+  }
+}
+
+@include responsive_mobile {
+  .product {
+    &-img {
+      margin-bottom: 0;
+    }
+
+    &-name {
+      font-size: map-get($font-size, xs);
+      margin-bottom: 3px;
+    }
+
+    &-price {
+      font-size: 10px;
+    }
+
+    &-info {
+      padding: 4px;
+    }
+
+    .badge {
+      top: 12px;
+      left: 9px;
+    }
+  }
+}
