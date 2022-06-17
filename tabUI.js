@@ -1,11 +1,10 @@
-const tabs = document.querySelectorAll(".tab-link");
+const tabs = document.querySelectorAll('.tab-link');
 for (let i = 0; i < tabs.length; i++) {
-  tabs[i].onclick = (e) => {
-    document.querySelector(".tab-link.current").classList.remove("current");
-    document.querySelector(".tab-content.current").classList.remove("current");
-    e.target.classList.add("current");
-    document
-      .getElementById(e.target.getAttribute("data-tab"))
-      .classList.add("current");
+  tabs[i].onclick = function () {
+    document.querySelector('.tab-link.current').classList.remove('current');
+    document.querySelector('.tab-content.current').classList.remove('current');
+    this.classList.add('current');
+    const tabId = document.getElementById(this.getAttribute('data-tab'));
+    tabId.classList.add('current');
   };
 }

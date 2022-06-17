@@ -1,10 +1,8 @@
-const dropDowns = document.querySelectorAll(".dropdown-btn");
-const dropDownContainers = document.querySelectorAll(".dropdown-container");
-console.log(dropDownContainers);
+const dropDowns = document.querySelectorAll('.dropdown-btn');
 
 for (let i = 0; i < dropDowns.length; i++) {
-  dropDowns[i].onclick = (e) => {
-    e.target.classList.toggle("active");
-    dropDownContainers[i].classList.toggle("active");
+  dropDowns[i].onclick = function () {
+    this.classList.toggle('active');
+    this.nextElementSibling.classList.toggle('active');
   };
 }
