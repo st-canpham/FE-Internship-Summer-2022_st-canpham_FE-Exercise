@@ -10,7 +10,7 @@
   }
 }
 
-@include responsive_mobile {
+@include responsive-below(map-get($breakpoint, mobile)) {
   .badge {
     font-size: 8px;
     padding: 2px 5px;

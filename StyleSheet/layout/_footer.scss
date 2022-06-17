@@ -7,7 +7,7 @@ footer {
     padding: 40px 0;
 
     &-left {
-      @extend %flex-justify-between;
+      @include flex('beetween', '');
       flex-direction: column;
       width: 375px;
       margin-right: 170px;
@@ -52,7 +52,7 @@ footer {
   }
 }
 
-@include responsive_mobile {
+@include responsive-below(map-get($breakpoint, mobile)) {
   footer {
     .footer-top {
       flex-direction: column;

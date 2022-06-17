@@ -33,7 +33,7 @@
   }
 }
 
-@include responsive_mobile {
+@include responsive-below(map-get($breakpoint, mobile)) {
   .product {
     &-img {
       margin-bottom: 0;

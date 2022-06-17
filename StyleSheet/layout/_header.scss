@@ -9,12 +9,12 @@ header {
   z-index: 100;
 
   .header-content {
-    @extend %flex-between-center;
+    @include flex('beetween', 'center');
     height: $header-height;
   }
 
   .nav-list {
-    @extend %flex-aligns-center;
+    @include flex('', 'center');
     font-size: map-get($font-size, lg);
     font-weight: map-get($font-weight, bold);
 
@@ -28,7 +28,7 @@ header {
   }
 
   .actions-list {
-    @extend %flex-end-center;
+    @include flex('end', 'center');
   }
 
   .action-item {
@@ -40,7 +40,7 @@ header {
   }
 }
 
-@include responsive_mobile {
+@include responsive-below(map-get($breakpoint, mobile)) {
   header {
     background-color: map-get($colors, white);
     top: 0;

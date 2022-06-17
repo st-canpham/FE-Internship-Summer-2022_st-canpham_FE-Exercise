@@ -1,6 +1,6 @@
 .logo {
   &-link {
-    @extend %flex-aligns-center;
+    @include flex('', 'center');
     font-size: 19px;
     color: map-get($colors, white);
   }
@@ -10,7 +10,7 @@
   }
 }
 
-@include responsive_mobile {
+@include responsive-below(map-get($breakpoint, mobile)) {
   .logo {
     &-link {
       font-size: 18px;
