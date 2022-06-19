@@ -67,7 +67,7 @@
               </button>
             </li>
             <li class="action-item">
-              <button class="btn btn-icon-sm">
+              <a href="/cart.html" class="btn btn-icon-sm">
                 <svg
                   class="action-icon"
                   width="24"
@@ -81,7 +81,8 @@
                     fill="white"
                   />
                 </svg>
-              </button>
+              </a>
+              <span class="action-quantity" id="quantity-cart">0</span>
             </li>
             <li class="action-item">
               <button class="btn btn-icon-sm">
@@ -253,9 +254,7 @@
                   </span>
                   <div class="media-body">
                     <h4 class="media-title">99% Satisfied Customers</h4>
-                    <p class="media-content">
-                      Our clients' opinions speak for themselves
-                    </p>
+                    <p class="media-content">Our clients' opinions speak for themselves</p>
                   </div>
                 </div>
               </li>
@@ -281,9 +280,7 @@
                   </span>
                   <div class="media-body">
                     <h4 class="media-title">Originality Guaranteed</h4>
-                    <p class="media-content">
-                      30 days warranty for each product from our store
-                    </p>
+                    <p class="media-content">30 days warranty for each product from our store</p>
                   </div>
                 </div>
               </li>
@@ -297,10 +294,7 @@
             <li class="category-item col-6 col-sm-12">
               <div class="category">
                 <div class="category-img">
-                  <img
-                    src="img/fashion-category-1.png"
-                    alt="New arrivalsare now in!"
-                  />
+                  <img src="img/fashion-category-1.png" alt="New arrivalsare now in!" />
                 </div>
 
                 <div class="category-content">
@@ -326,10 +320,7 @@
             <li class="category-item col-3 col-sm-6">
               <div class="category">
                 <div class="category-img">
-                  <img
-                    src="img/fashion-category-3.png"
-                    alt="Sale this summer"
-                  />
+                  <img src="img/fashion-category-3.png" alt="Sale this summer" />
                 </div>
                 <div class="category-content">
                   <span class="badge badge-primary">-50%</span>
@@ -350,62 +341,7 @@
             <h3 class="section-title">Selected just for you</h3>
             <button class="btn btn-outline-secondary">SHOW MORE</button>
           </div>
-          <ul class="products-list row">
-            <li class="product-item col-3 col-sm-6">
-              <a href="" class="product">
-                <div class="product-img">
-                  <img src="img/product-1.png" alt="T-Shirt Summer Vibes" />
-                </div>
-                <span class="badge badge-primary badge-top-left">-30%</span>
-                <div class="product-info">
-                  <h4 class="product-name">T-Shirt Summer Vibes</h4>
-                  <div class="product-price">
-                    <p class="price-discount">$89.99</p>
-                    <p class="price-current">$119.99</p>
-                  </div>
-                </div>
-              </a>
-            </li>
-            <li class="product-item col-3 col-sm-6">
-              <a href="" class="product">
-                <div class="product-img">
-                  <img src="img/product-2.png" alt="Loose Knit 3/4 Sleeve" />
-                </div>
-                <div class="product-info">
-                  <h4 class="product-name">Loose Knit 3/4 Sleeve</h4>
-                  <div class="product-price">
-                    <p class="price-current">$119.999</p>
-                  </div>
-                </div>
-              </a>
-            </li>
-            <li class="product-item col-3 col-sm-6">
-              <a href="" class="product">
-                <div class="product-img">
-                  <img src="img/product-3.png" alt="Loose Knit 3/4 Sleeve" />
-                </div>
-                <div class="product-info">
-                  <h4 class="product-name">Basic Slim Fit T-Shirt</h4>
-                  <div class="product-price">
-                    <p class="price-current">$79.99</p>
-                  </div>
-                </div>
-              </a>
-            </li>
-            <li class="product-item col-3 col-sm-6">
-              <a href="" class="product">
-                <div class="product-img">
-                  <img src="img/product-4.png" alt="Loose Knit 3/4 Sleeve" />
-                </div>
-                <div class="product-info">
-                  <h4 class="product-name">Loose Textured T-Shirt</h4>
-                  <div class="product-price">
-                    <p class="price-current">$119.99</p>
-                  </div>
-                </div>
-              </a>
-            </li>
-          </ul>
+          <ul class="products-list row js-products-list"></ul>
         </div>
       </section>
       <section class="section-benefits page-section">
@@ -445,8 +381,7 @@
                 <div class="media-body">
                   <h4 class="media-title">Free shipping</h4>
                   <p class="media-content">
-                    All purchases over $199 are eligible forfree shipping via
-                    USPS First Class Mail.
+                    All purchases over $199 are eligible forfree shipping via USPS First Class Mail.
                   </p>
                 </div>
               </div>
@@ -477,17 +412,13 @@
                       d="M35 4.13328V2.16424L29.4203 0L18.6444 5.85673H9.34448V19.6401H30.6945V15.7363C30.9847 15.747 31.2718 15.7588 31.5518 15.7803C31.7273 15.791 31.9018 15.7985 32.0773 15.7985C33.074 15.7905 34.0622 15.6041 35 15.2472V13.2685L34.9757 13.2793C33.9377 13.7709 32.8044 13.9955 31.6684 13.9345C31.3499 13.912 31.0283 13.8981 30.6955 13.8863C30.1355 13.8713 29.5583 13.8756 28.9455 13.897C28.1025 13.927 27.1986 13.9967 26.2125 14.104L25.1341 14.222C24.865 14.2612 24.5922 14.1859 24.3757 14.0125C24.1592 13.8391 24.0167 13.5819 23.9796 13.2975C23.9425 13.0131 24.0137 12.7247 24.1777 12.4958C24.3417 12.2669 24.585 12.1163 24.8541 12.077L28.9354 11.3263C28.937 11.327 28.9387 11.3274 28.9405 11.3274C28.9422 11.3274 28.9439 11.327 28.9455 11.3263C29.3037 11.2611 29.6447 11.1164 29.9462 10.9018C30.2476 10.6872 30.5027 10.4075 30.6945 10.0812C30.9424 9.66389 31.0802 9.18406 31.0934 8.69151C31.1067 8.19895 30.995 7.71161 30.7699 7.2801C30.5449 6.84858 30.2147 6.48862 29.8136 6.23757C29.4125 5.98652 28.9551 5.85354 28.489 5.85244H22.469L29.54 2.01624L35 4.13328ZM28.49 7.70674C28.6512 7.70499 28.8094 7.75267 28.9455 7.84401C29.069 7.9261 29.1707 8.03994 29.2412 8.17489C29.3117 8.30983 29.3487 8.46148 29.3487 8.61565C29.3487 8.76982 29.3117 8.92147 29.2412 9.05642C29.1707 9.19137 29.069 9.30521 28.9455 9.38729C28.8526 9.44866 28.7492 9.4902 28.6412 9.50955L24.5599 10.2603C23.8745 10.384 23.2581 10.7755 22.8328 11.357C22.4076 11.9386 22.2046 12.6679 22.2641 13.4003C22.3236 14.1326 22.6412 14.8146 23.154 15.3111C23.6668 15.8075 24.3373 16.0822 25.0326 16.0805C25.1262 16.081 25.2196 16.076 25.3126 16.0655C25.3126 16.0655 28.1613 15.7845 28.9496 15.7545V17.7922H11.0945V7.71103L28.49 7.70674Z"
                       fill="#333333"
                     />
-                    <path
-                      d="M21.0092 11.8228H19.2593V13.6729H21.0092V11.8228Z"
-                      fill="#333333"
-                    />
+                    <path d="M21.0092 11.8228H19.2593V13.6729H21.0092V11.8228Z" fill="#333333" />
                   </svg>
                 </span>
                 <div class="media-body">
                   <h4 class="media-title">Easy Payments</h4>
                   <p class="media-content">
-                    All payments are processed instantlyover a secure payment
-                    protocol.
+                    All payments are processed instantlyover a secure payment protocol.
                   </p>
                 </div>
               </div>
@@ -515,8 +446,8 @@
                 <div class="media-body">
                   <h4 class="media-title">Money-Back Guarantee</h4>
                   <p class="media-content">
-                    If an item arrived damaged or you'vechanged your mind, you
-                    can send itback for a full refund.
+                    If an item arrived damaged or you'vechanged your mind, you can send itback for a
+                    full refund.
                   </p>
                 </div>
               </div>
@@ -544,8 +475,8 @@
                 <div class="media-body">
                   <h4 class="media-title">Finest Quality</h4>
                   <p class="media-content">
-                    Designed to last, each of our products hasbeen crafted with
-                    the finest materials.
+                    Designed to last, each of our products hasbeen crafted with the finest
+                    materials.
                   </p>
                 </div>
               </div>
@@ -560,7 +491,7 @@
           </div>
           <ul class="products-list row">
             <li class="product-item col-3 col-sm-6">
-              <a href="" class="product">
+              <a href="#" class="product">
                 <div class="product-img">
                   <img src="img/product-1.png" alt="T-Shirt Summer Vibes" />
                 </div>
@@ -575,7 +506,7 @@
               </a>
             </li>
             <li class="product-item col-3 col-sm-6">
-              <a href="" class="product">
+              <a href="#" class="product">
                 <div class="product-img">
                   <img src="img/product-2.png" alt="Loose Knit 3/4 Sleeve" />
                 </div>
@@ -588,7 +519,7 @@
               </a>
             </li>
             <li class="product-item col-3 col-sm-6">
-              <a href="" class="product">
+              <a href="#" class="product">
                 <div class="product-img">
                   <img src="img/product-3.png" alt="Loose Knit 3/4 Sleeve" />
                 </div>
@@ -601,7 +532,7 @@
               </a>
             </li>
             <li class="product-item col-3 col-sm-6">
-              <a href="" class="product">
+              <a href="#" class="product">
                 <div class="product-img">
                   <img src="img/product-4.png" alt="Loose Knit 3/4 Sleeve" />
                 </div>
@@ -621,17 +552,12 @@
           <div class="subcribe row">
             <div class="col-6 col-sm-12">
               <h2 class="subcribe-title">
-                Subscribe to our newsletter andreceive exclusive offers every
-                week
+                Subscribe to our newsletter andreceive exclusive offers every week
               </h2>
             </div>
             <div class="col-6 col-sm-12">
               <form class="subcribe-form" action="">
-                <input
-                  class="form-control"
-                  type="email"
-                  placeholder="Enter your email"
-                />
+                <input class="form-control" type="email" placeholder="Enter your email" />
                 <button class="subcribe-btn btn btn-primary">SUBCRIBE</button>
               </form>
             </div>
@@ -663,8 +589,8 @@
                 </a>
               </h2>
               <p class="about-content">
-                House My Brand designs clothing for the young, the old &everyone
-                in between – but most importantly, for the fashionable
+                House My Brand designs clothing for the young, the old &everyone in between – but
+                most importantly, for the fashionable
               </p>
             </div>
             <ul class="socials-list">
@@ -805,9 +731,8 @@
           </div>
         </div>
       </div>
-      <p class="footer-copyright">
-        DESIGN BY ICEO.CO - © 2019. ALL RIGHTS RESERVED.
-      </p>
+      <p class="footer-copyright">DESIGN BY ICEO.CO - © 2019. ALL RIGHTS RESERVED.</p>
     </footer>
   </body>
+  <script src="home.js"></script>
 </html>

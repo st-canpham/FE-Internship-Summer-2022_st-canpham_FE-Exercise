@@ -1,6 +1,6 @@
 .product {
   position: relative;
-
+  transition: 0.2s ease-in-out;
   &-img {
     display: flex;
     margin-bottom: 16px;
@@ -30,6 +30,28 @@
     position: absolute;
     top: 30px;
     left: 27px;
+  }
+
+  &-btn {
+    position: absolute;
+    left: 50%;
+    bottom: 100px;
+    transform: translateX(-50%);
+    opacity: 0;
+    z-index: 1;
+  }
+
+  &:hover {
+    &::after {
+      content: '';
+      @extend %absolute-fit;
+      background-color: #333333;
+      opacity: 0.3;
+    }
+
+    .product-btn {
+      opacity: 1;
+    }
   }
 }
 

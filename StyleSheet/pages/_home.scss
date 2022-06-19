@@ -2,11 +2,7 @@ $banner-height: 800px;
 .section-banner {
   padding: 0;
   position: relative;
-  background-image: linear-gradient(
-      180deg,
-      rgba(0, 0, 0, 0.8) 0%,
-      rgba(0, 0, 0, 0.5) 100%
-    ),
+  background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.5) 100%),
     url('../img/fashion-banner-1.png');
   height: $banner-height;
   @extend %background-image_default;
@@ -133,11 +129,7 @@ $banner-height: 800px;
 
 .section-subcribe {
   @include flex('center', 'center');
-  background-image: linear-gradient(
-      90deg,
-      rgba(0, 0, 0, 0.7) 33.28%,
-      rgba(0, 0, 0, 0) 94.05%
-    ),
+  background-image: linear-gradient(90deg, rgba(0, 0, 0, 0.7) 33.28%, rgba(0, 0, 0, 0) 94.05%),
     url('../img/fashion-footer.png');
   @extend %background-image_default;
 
@@ -165,11 +157,7 @@ $banner-height: 800px;
 
 @include responsive-below(map-get($breakpoint, mobile)) {
   .section-banner {
-    background-image: linear-gradient(
-        180deg,
-        rgba(0, 0, 0, 0.8) 0%,
-        rgba(0, 0, 0, 0.5) 100%
-      ),
+    background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.5) 100%),
       url('../../img/fashion-banner-mobile.png');
     height: 812px;
 
@@ -249,11 +237,7 @@ $banner-height: 800px;
 
   .section-subcribe {
     display: block;
-    background-image: linear-gradient(
-        90deg,
-        rgba(0, 0, 0, 0.7) 33.28%,
-        rgba(0, 0, 0, 0) 94.05%
-      ),
+    background-image: linear-gradient(90deg, rgba(0, 0, 0, 0.7) 33.28%, rgba(0, 0, 0, 0) 94.05%),
       url('../../img/fashion-footer-mobile.png');
 
     .subcribe {
