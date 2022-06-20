@@ -74,10 +74,7 @@ function handleRemoveCartItem(id) {
 
     totalPriceElm.innerHTML = (+totalPriceElm.innerHTML -priceDiscount * cartList[id].quantity).toFixed(2);
   } else {
-    totalPriceElm.innerHTML = (
-      +totalPriceElm.innerHTML -
-      item.price * cartList[id].quantity
-    ).toFixed(2);
+    totalPriceElm.innerHTML = (+totalPriceElm.innerHTML -item.price * cartList[id].quantity).toFixed(2);
   }
   delete cartList[id];
   localStorage.setItem('cartList', JSON.stringify(cartList));

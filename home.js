@@ -30,9 +30,10 @@ const productsListLocal = {
 if (!localStorage.getItem('productsListLocal')) {
   localStorage.setItem('productsListLocal', JSON.stringify(productsListLocal));
 }
+
 // ---------------------------------------------------------------------------------
 
-const productsList = JSON.parse(localStorage.getItem('productListLocal')) || {};
+const productsList = JSON.parse(localStorage.getItem('productsListLocal')) || {};
 const cartList = JSON.parse(localStorage.getItem('cartList')) || {};
 
 const productsListElm = document.querySelector('.js-products-list');
