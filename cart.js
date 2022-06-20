@@ -1,4 +1,5 @@
 const cartList = JSON.parse(localStorage.getItem('cartList')) || {};
+const productsList = JSON.parse(localStorage.getItem('productsListLocal')) || {};
 const cartListElm = document.querySelector('.js-cart-list');
 const totalPriceElm = document.getElementById('total-price');
 const quantityCartElm = document.getElementById('quantity-cart');
@@ -6,25 +7,18 @@ const cartEmptyElm = document.querySelector('.js-cart-empty');
 const cartNotEmptyElm = document.querySelector('.js-cart-not-empty');
 
 function getQuantityCart() {
-  let result = 0;
-  for (let cartItem in cartList) {
-    result += cartList[cartItem].quantity;
+  let quantityCart = 0;
+  for (let cartId in cartList) {
+    quantityCart += cartList[cartId].quantity;
   }
-
-  return result;
+  quantityCartElm.innerHTML = quantityCart;
 }
-
-function loadCartQuantity() {
-  quantityCartElm.innerHTML = getQuantityCart();
-}
-
-console.log(cartList);
 
 function renderCart() {
   let total = 0;
-  for (let cartItem in cartList) {
-    const item = cartList[cartItem].item;
-    const quantity = cartList[cartItem].quantity;
+  for (let cartId in cartList) {
+    const item = productsList[cartId];
+    const quantity = cartList[cartId].quantity;
     const priceDiscount = (item.price - item.discount * item.price).toFixed(2);
 
       cartListElm.innerHTML += `<li class="cart-item js-cart-item cart-item-${item.id}">
@@ -68,7 +62,7 @@ function renderCart() {
 
 function handleRemoveCartItem(id) {
   const cartItem = document.querySelector('.cart-item-' + id);
-  const item = cartList[id].item;
+  const item = productsList[id];
   if (cartItem) {
     cartItem.remove();
   }
@@ -91,7 +85,7 @@ function handleRemoveCartItem(id) {
 
 function handleInscrease(id) {
   const inputQuantity = document.getElementById('quantity' + id);
-  const cartItem = cartList[id].item;
+  const cartItem = productsList[id];
   inputQuantity.value = +inputQuantity.value + 1;
   cartList[id].quantity += 1;
   localStorage.setItem('cartList', JSON.stringify(cartList));
@@ -106,7 +100,7 @@ function handleInscrease(id) {
 
 function handleDescrease(id) {
   const inputQuantity = document.getElementById('quantity' + id);
-  const cartItem = cartList[id].item;
+  const cartItem = productsList[id];
   if (inputQuantity.value == 1) {
     handleRemoveCartItem(id);
     return;
@@ -132,7 +126,7 @@ function checkCartEmpty() {
 }
 
 function main() {
-  loadCartQuantity();
+  getQuantityCart();
 
   renderCart();
 
