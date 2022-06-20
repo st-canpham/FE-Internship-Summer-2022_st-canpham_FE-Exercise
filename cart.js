@@ -18,6 +18,8 @@ function loadCartQuantity() {
   quantityCartElm.innerHTML = getQuantityCart();
 }
 
+console.log(cartList);
+
 function renderCart() {
   let total = 0;
   for (let cartItem in cartList) {
@@ -25,17 +27,16 @@ function renderCart() {
     const quantity = cartList[cartItem].quantity;
     const priceDiscount = (item.price - item.discount * item.price).toFixed(2);
 
-    if (item.discount) {
       cartListElm.innerHTML += `<li class="cart-item js-cart-item cart-item-${item.id}">
       <div class="cart-item-left">
         <div class="cart-item-img">
           <img src="${item.thumbnail}" alt="" />
         </div>
-        <div class="badge badge-primary">${item.discount * 100 + '%'} </div>
+        ${item.discount ? `<div class="badge badge-primary">${item.discount * 100 + '%'} </div>` : ""}
         <div class="cart-item-info">
           <h4 class="cart-item-name">T-Shirt Summer Vibe</h4>
           <div class="cart-item-price">
-            <p class="price-discount">${'$' + priceDiscount}</p>
+            ${item.discount ? `<p class="price-discount">${'$' + priceDiscount}</p>` : ""}
             <p class="price-current">${'$' + item.price}</p>
           </div>
         </div>
@@ -59,42 +60,7 @@ function renderCart() {
         <button class="btn remove-btn" onclick="handleRemoveCartItem(${item.id})">Remove</button>
       </div>
     </li>`;
-      total += priceDiscount * quantity;
-    } else {
-      cartListElm.innerHTML += `<li class="cart-item js-cart-item cart-item-${item.id}">
-      <div class="cart-item-left">
-        <div class="cart-item-img">
-          <img src="${item.thumbnail}" alt="" />
-        </div>
-        <div class="cart-item-info">
-          <h4 class="cart-item-name">T-Shirt Summer Vibe</h4>
-          <div class="cart-item-price">
-            <p class="price-current">${'$' + item.price}</p>
-          </div>
-        </div>
-      </div>
-      <div class="cart-item-option">
-        <div class="quantity">
-          <button 
-            data-id="${'quantity' + item.id}" 
-            onclick="handleDescrease(${item.id})"
-            class="js-btn-descrease">
-              -
-          </button>
-          <input type="number" id="${'quantity' + item.id}" min="0" disabled value="${quantity}"/>
-          <button 
-            data-id="${'quantity' + item.id}" 
-            onclick="handleInscrease(${item.id})" 
-            class="js-btn-inscrease"
-            >
-              +
-          </button>
-        </div>
-        <button class="btn remove-btn" onclick="handleRemoveCartItem(${item.id})">Remove</button>
-      </div>
-    </li>`;
-      total += item.price * quantity;
-    }
+     item.discount ? total += priceDiscount * quantity : total += item.price * quantity;
   }
 
   totalPriceElm.innerHTML = total.toFixed(2);
@@ -112,10 +78,7 @@ function handleRemoveCartItem(id) {
   if (item.discount) {
     const priceDiscount = item.price - item.price * item.discount;
 
-    totalPriceElm.innerHTML = (
-      +totalPriceElm.innerHTML -
-      priceDiscount * cartList[id].quantity
-    ).toFixed(2);
+    totalPriceElm.innerHTML = (+totalPriceElm.innerHTML -priceDiscount * cartList[id].quantity).toFixed(2);
   } else {
     totalPriceElm.innerHTML = (
       +totalPriceElm.innerHTML -

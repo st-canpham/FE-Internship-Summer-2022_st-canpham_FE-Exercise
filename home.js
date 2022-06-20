@@ -42,30 +42,25 @@ function getQuantityCart() {
   for (let cartItem in cartList) {
     quantityCart += cartList[cartItem].quantity;
   }
-  return quantityCart;
-}
-
-function loadCartQuantity() {
-  quantityCartElm.innerHTML = getQuantityCart();
+  quantityCartElm.innerHTML = quantityCart;
 }
 
 function renderProducts() {
-  for (let productItem of productsList) {
-    if (productItem.discount) {
-      const priceDiscount = (productItem.price - productItem.discount * productItem.price).toFixed(
-        2
-      );
-      productsListElm.innerHTML += `<li class="product-item col-3 col-sm-6">
+  productsList.forEach((productItem) => {
+    const priceDiscount = (productItem.price - productItem.discount * productItem.price).toFixed(2);
+
+    productsListElm.innerHTML += 
+    `<li class="product-item col-3 col-sm-6">
       <div class="product">
         <div class="product-img">
         <img src="${productItem.thumbnail}" alt="T-Shirt Summer Vibes" />
         </div>
-        <span class="badge badge-primary badge-top-left">${productItem.discount * 100 + '%'}</span>
+        ${productItem.discount ? `<span class="badge badge-primary badge-top-left">${productItem.discount * 100 + "%"}</span>` : ""}
         <div class="product-info">
         <h4 class="product-name">${productItem.name}</h4>
         <div class="product-price">
-          <p class="price-discount">${priceDiscount + '$'}</p>
-          <p class="price-current">${productItem.price + '$'}</p>
+          ${productItem.discount ? `<p class="price-discount">${priceDiscount + "$"}</p>` : ""}
+          <p class="price-current">${productItem.price + "$"}</p>
         </div>  
         </div>
         <button 
@@ -75,27 +70,7 @@ function renderProducts() {
         </button>
       </div>
     </li>`;
-    } else {
-      productsListElm.innerHTML += `<li class="product-item col-3 col-sm-6">
-      <div class="product">
-        <div class="product-img">
-          <img src="${productItem.thumbnail}" alt="T-Shirt Summer Vibes" />
-        </div>
-        <div class="product-info">
-          <h4 class="product-name">${productItem.name}</h4>
-          <div class="product-price">
-            <p class="price-current">${productItem.price + '$'}</p>
-          </div>
-        </div>
-        <button
-          class="btn btn-primary product-btn" 
-          onclick="handleAddToCart(${productItem.id})" 
-        >ADD TO CART
-        </button>
-      </div>
-    </li>`;
-    }
-  }
+  });
 }
 
 function getProductItem(id) {
@@ -108,16 +83,16 @@ function getProductItem(id) {
 
 function handleAddToCart(id) {
   quantityCartElm.innerHTML = +quantityCartElm.innerHTML + 1;
-  if (!cartList?.[id]) {
-    cartList[id] = { item: getProductItem(id), quantity: 1 };
-  } else {
+  if (cartList?.[id]) {
     cartList[id].quantity += 1;
+  } else {
+    cartList[id] = { item: getProductItem(id), quantity: 1 };
   }
   localStorage.setItem('cartList', JSON.stringify(cartList));
 }
 
 function main() {
-  loadCartQuantity();
+  getQuantityCart();
 
   renderProducts();
 }

@@ -1,11 +1,11 @@
 $banner-height: 800px;
 .section-banner {
+  @extend %background-image_default;
   padding: 0;
   position: relative;
   background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.5) 100%),
     url('../img/fashion-banner-1.png');
   height: $banner-height;
-  @extend %background-image_default;
 
   .banner-inner {
     @include flex('beetween', '');
@@ -82,8 +82,8 @@ $banner-height: 800px;
   }
 
   &-content {
-    position: absolute;
     @include flex('end', '');
+    position: absolute;
     align-items: flex-start;
     flex-direction: column;
     left: 40px;

@@ -36,6 +36,8 @@
     position: absolute;
     left: 50%;
     bottom: 100px;
+    height: 35px;
+    padding: 10px;
     transform: translateX(-50%);
     opacity: 0;
     z-index: 1;
@@ -45,8 +47,8 @@
     &::after {
       content: '';
       @extend %absolute-fit;
-      background-color: #333333;
-      opacity: 0.3;
+      background-color: #acacac;
+      opacity: 0.2;
     }
 
     .product-btn {
