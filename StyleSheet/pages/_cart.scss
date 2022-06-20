@@ -21,16 +21,16 @@
     }
   }
 
-  &-item-name {
+  &-name {
     font-size: map-get($font-size, md);
   }
 
-  &-item-img {
+  &-img {
     height: 140px;
     margin-right: 20px;
   }
 
-  &-item-price {
+  &-price {
     display: flex;
     font-size: map-get($font-size, lg);
 
@@ -44,7 +44,19 @@
     }
   }
 
-  &-item-option {
+  &-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  &-total-item {
+    span {
+      color: map-get($colors, primary);
+    }
+  }
+
+  &-option {
     @include flex('beetween', 'end');
     flex-direction: column;
 

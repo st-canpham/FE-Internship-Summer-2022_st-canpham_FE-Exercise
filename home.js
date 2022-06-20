@@ -1,4 +1,4 @@
-const productsListLocal = {
+var productsListLocal = {
   1: {
     id: 1,
     name: 'T-Shirt Summer Vibe',
@@ -27,30 +27,20 @@ const productsListLocal = {
 }
   
 
-if (!localStorage.getItem('productsListLocal')) {
-  localStorage.setItem('productsListLocal', JSON.stringify(productsListLocal));
+if (!getStorage(listKeys.productsListLocal)) {
+  setStorage(listKeys.productsListLocal, productsListLocal);
 }
 
 // ---------------------------------------------------------------------------------
+var productsList = getStorage(listKeys.productsListLocal) || {};
 
-const productsList = JSON.parse(localStorage.getItem('productsListLocal')) || {};
-const cartList = JSON.parse(localStorage.getItem('cartList')) || {};
-
-const productsListElm = document.querySelector('.js-products-list');
-const quantityCartElm = document.getElementById('quantity-cart');
-
-function getQuantityCart() {
-  let quantityCart = 0;
-  for (let cartId in cartList) {
-    quantityCart += cartList[cartId].quantity;
-  }
-  quantityCartElm.innerHTML = quantityCart;
-}
+var productsListElm = document.querySelector('.js-products-list');
+var quantityCartElm = document.getElementById('quantity-cart');
 
 function renderProducts() {
-  for (let productId in productsList) {
-    const productItem = productsList[productId];
-    const priceDiscount = (productItem.price - productItem.discount * productItem.price).toFixed(2);
+  for (var productId in productsList) {
+    var productItem = productsList[productId];
+    var priceDiscount = (productItem.price - productItem.discount * productItem.price).toFixed(2);
 
     productsListElm.innerHTML += 
     `<li class="product-item col-3 col-sm-6">
@@ -60,15 +50,15 @@ function renderProducts() {
         </div>
         ${productItem.discount ? `<span class="badge badge-primary badge-top-left">${productItem.discount * 100 + "%"}</span>` : ""}
         <div class="product-info">
-        <h4 class="product-name">${productItem.name}</h4>
-        <div class="product-price">
-          ${productItem.discount ? `<p class="price-discount">${priceDiscount + "$"}</p>` : ""}
-          <p class="price-current">${productItem.price + "$"}</p>
-        </div>  
+          <h4 class="product-name">${productItem.name}</h4>
+          <div class="product-price">
+            ${productItem.discount ? `<p class="price-discount">${priceDiscount + "$"}</p>` : ""}
+            <p class="price-current">${productItem.price + "$"}</p>
+          </div>  
         </div>
         <button 
-          class="btn btn-primary product-btn" 
-          onclick="handleAddToCart(${productItem.id})" 
+          class="btn btn-primary product-btn js-buy-btn" 
+          data-id="${productItem.id}"
         >ADD TO CART
         </button>
       </div>
@@ -76,20 +66,32 @@ function renderProducts() {
   }
 }
 
-function handleAddToCart(id) {
-  quantityCartElm.innerHTML = +quantityCartElm.innerHTML + 1;
+function addToCart() {
+  var cartList = getStorage(listKeys.cartList) || {};
+  var quantityAdd = +quantityCartElm.innerHTML + 1;
+  quantityCartElm.innerHTML = quantityAdd;
+  var id = this.getAttribute('data-id');
   if (cartList?.[id]) {
     cartList[id].quantity += 1;
   } else {
     cartList[id] = { id, quantity: 1 };
   }
-  localStorage.setItem('cartList', JSON.stringify(cartList));
+  setStorage(listKeys.cartList, cartList);
+}
+
+function addEventToBuyBtn() {
+  var buyBtns = document.querySelectorAll('.js-buy-btn');
+  buyBtns.forEach(function(btn) {
+    btn.addEventListener('click', addToCart);
+  })
 }
 
 function main() {
   getQuantityCart();
 
   renderProducts();
+
+  addEventToBuyBtn();
 }
 
 main();
