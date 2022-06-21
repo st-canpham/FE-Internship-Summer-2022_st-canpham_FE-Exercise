@@ -11,7 +11,7 @@ function renderCart() {
   for (var cartId in cartList) {
     var item = productsList[cartId];
     var quantity = cartList[cartId].quantity;
-    var priceDiscount = convertToFixed((item.price - item.discount * item.price), 2);
+    var priceDiscount = convertToFixed((calcPriceDiscount(item.price, item.discount)), 2);
 
     cartListElm.innerHTML += `<li class="cart-item js-cart-item cart-item-${item.id}">
       <div class="cart-item-left">
@@ -60,15 +60,13 @@ function renderCart() {
   addEventToRemoveBtn();
 }
 
+function calcPriceDiscount(priceCurrent, discount) {
+  return priceCurrent - priceCurrent * discount;
+}
+
 function updatePrice (cartItem, priceCurrent, value) {
-  var price = 0;
-  if(cartItem.discount) {
-    var priceDiscount = cartItem.price - cartItem.discount * cartItem.price;
-    price = priceCurrent + priceDiscount * value;
-  }
-  else {
-    price = priceCurrent + cartItem.price * value;
-  }
+  var priceDiscount = calcPriceDiscount(cartItem.price, cartItem.discount);
+  var price = priceCurrent + (priceDiscount || cartItem.price) * value;
   return convertToFixed(price, 2);
 }
 
