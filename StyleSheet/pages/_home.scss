@@ -48,7 +48,7 @@ $banner-height: 800px;
     }
 
     .offer-icon {
-      @include flex('center', 'center');
+      @include flex-centered;
       flex-shrink: 0;
       background-color: #fff3df;
     }
@@ -122,13 +122,13 @@ $banner-height: 800px;
   }
 
   .benefit-icon {
-    @include flex('center', 'center');
+    @include flex-centered;
     background-color: map-get($colors, white);
   }
 }
 
 .section-subcribe {
-  @include flex('center', 'center');
+  @include flex-centered;
   background-image: linear-gradient(90deg, rgba(0, 0, 0, 0.7) 33.28%, rgba(0, 0, 0, 0) 94.05%),
     url('../img/fashion-footer.png');
   @extend %background-image_default;
@@ -144,7 +144,7 @@ $banner-height: 800px;
     }
 
     &-form {
-      @include flex('center', 'center');
+      @include flex-centered;
     }
 
     &-btn {

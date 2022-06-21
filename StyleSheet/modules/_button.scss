@@ -1,5 +1,5 @@
 .btn {
-  @include flex('center', 'center');
+  @include flex-centered;
   height: 48px;
   padding: 14px 20px;
   font-family: $font-family;

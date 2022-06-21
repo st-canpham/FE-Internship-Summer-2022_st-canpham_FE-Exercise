@@ -15,7 +15,7 @@ header {
   }
 
   .nav-list {
-    @include flex('', 'center');
+    @include flex-center-y;
     font-size: map-get($font-size, lg);
     font-weight: map-get($font-weight, bold);
 
@@ -29,7 +29,8 @@ header {
   }
 
   .actions-list {
-    @include flex('end', 'center');
+    @include flex-center-y;
+    justify-content: flex-end;
   }
 
   .action-item {
@@ -42,7 +43,7 @@ header {
   }
 
   .action-quantity {
-    @include flex('center', 'center');
+    @include flex-centered;
     position: absolute;
     top: -10px;
     right: -10px;

@@ -7,8 +7,7 @@ footer {
     padding: 40px 0;
 
     &-left {
-      @include flex('beetween', '');
-      flex-direction: column;
+      @include flex-between-y;
       width: 375px;
       margin-right: 170px;
     }

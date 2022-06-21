@@ -298,8 +298,8 @@ header .nav-list .nav-link {
 }
 header .actions-list {
   display: flex;
-  justify-content: flex-end;
   align-items: center;
+  justify-content: flex-end;
 }
 header .action-item {
   margin-right: 24px;
@@ -361,8 +361,8 @@ footer .footer-top {
 }
 footer .footer-top-left {
   display: flex;
-  justify-content: space-between;
   flex-direction: column;
+  justify-content: space-between;
   width: 375px;
   margin-right: 170px;
 }

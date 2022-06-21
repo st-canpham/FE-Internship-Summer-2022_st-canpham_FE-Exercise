@@ -66,3 +66,48 @@ $grid-col: 12;
     }
   }
 }
+
+@mixin flex-column() {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin flex-center-y() {
+  display: flex;
+  align-items: center;
+}
+
+@mixin flex-center-x() {
+  display: flex;
+  justify-content: center;
+}
+
+@mixin flex-centered() {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin flex-column-centered() {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+@mixin flex-center-between() {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin flex-center-end () {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+@mixin flex-between-y () {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
