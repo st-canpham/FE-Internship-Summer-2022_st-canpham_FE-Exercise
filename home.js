@@ -27,43 +27,77 @@ var productsListLocal = {
 }
   
 
-if (!getStorage(listKeys.productsListLocal)) {
-  setStorage(listKeys.productsListLocal, productsListLocal);
+if (!getStorage(listKeys.productsList)) {
+  setStorage(listKeys.productsList, productsListLocal);
 }
 
 // ---------------------------------------------------------------------------------
-var productsList = getStorage(listKeys.productsListLocal) || {};
+var productsList = getStorage(listKeys.productsList) || {};
 
 var productsListElm = document.querySelector('.js-products-list');
-var quantityCartElm = document.getElementById('quantity-cart');
+var quantityCartElm = document.querySelector('.js-quantity-cart');
 
 function renderProducts() {
-  for (var productId in productsList) {
-    var productItem = productsList[productId];
-    var priceDiscount = (productItem.price - productItem.discount * productItem.price).toFixed(2);
+  Object.keys(productsList).forEach(function(id) {
+    var item = productsList[id];
 
-    productsListElm.innerHTML += 
-    `<li class="product-item col-3 col-sm-6">
-      <div class="product">
-        <div class="product-img">
-        <img src="${productItem.thumbnail}" alt="T-Shirt Summer Vibes" />
-        </div>
-        ${productItem.discount ? `<span class="badge badge-primary badge-top-left">${productItem.discount * 100 + "%"}</span>` : ""}
-        <div class="product-info">
-          <h4 class="product-name">${productItem.name}</h4>
-          <div class="product-price">
-            ${productItem.discount ? `<p class="price-discount">${priceDiscount + "$"}</p>` : ""}
-            <p class="price-current">${productItem.price + "$"}</p>
-          </div>  
-        </div>
-        <button 
-          class="btn btn-primary product-btn js-buy-btn" 
-          data-id="${productItem.id}"
-        >ADD TO CART
-        </button>
-      </div>
-    </li>`;
-  }
+    var productItem = document.createElement('li');
+    productItem.classList.add('product-item', 'col-3', 'col-sm-6');
+
+    var product = document.createElement('div');
+    product.classList.add('product');
+
+    var productImg = document.createElement('div');
+    productImg.classList.add('product-img');
+
+    var productImgContent = document.createElement('img');
+    productImgContent.src = item.thumbnail;
+    productImgContent.alt = item.name;
+
+    var productInfo = document.createElement('div');
+    productInfo.classList.add('product-info');
+
+    var productName = document.createElement('h4');
+    productName.classList.add('product-name');
+    productName.innerText = item.name;
+
+    var productPrice = document.createElement('div');
+    productPrice.classList.add('product-price');
+
+    var priceCurrent = document.createElement('p');
+    priceCurrent.classList.add('price-current');
+    priceCurrent.innerText = item.price
+
+    var buyBtn = document.createElement('button');
+    buyBtn.classList.add('btn', 'btn-primary', 'product-btn');
+    buyBtn.setAttribute('data-id', item.id);
+    buyBtn.innerText = 'ADD TO CART';
+    buyBtn.addEventListener('click', addToCart);
+
+    if(item.discount) {
+      var badgeDiscount = document.createElement('span');
+      badgeDiscount.classList.add('badge', 'badge-primary');
+      badgeDiscount.innerText = item.discount * 100 + '%';
+
+      var priceDiscount = document.createElement('p');
+      priceDiscount.classList.add('price-discount');
+      priceDiscount.innerText = item.price - item.price * item.discount;
+      
+      productPrice.appendChild(priceDiscount);
+      product.appendChild(badgeDiscount);
+    }
+
+    productImg.appendChild(productImgContent);
+    productPrice.appendChild(priceCurrent);
+    productInfo.appendChild(productName);
+    productInfo.appendChild(productPrice);
+    product.appendChild(productImg);
+    product.appendChild(productInfo);
+    product.appendChild(buyBtn);
+    productItem.appendChild(product);
+
+    productsListElm.appendChild(productItem);
+  })
 }
 
 function addToCart() {
@@ -79,19 +113,10 @@ function addToCart() {
   setStorage(listKeys.cartList, cartList);
 }
 
-function addEventToBuyBtn() {
-  var buyBtns = document.querySelectorAll('.js-buy-btn');
-  buyBtns.forEach(function(btn) {
-    btn.addEventListener('click', addToCart);
-  })
-}
-
 function main() {
   getQuantityCart();
 
   renderProducts();
-
-  addEventToBuyBtn();
 }
 
 main();

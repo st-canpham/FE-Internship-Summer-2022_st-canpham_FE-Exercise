@@ -1,7 +1,7 @@
-var productsList = getStorage(listKeys.productsListLocal) || {};
+var productsList = getStorage(listKeys.productsList) || {};
 var cartListElm = document.querySelector('.js-cart-list');
-var totalPriceElm = document.getElementById('total-price');
-var quantityCartElm = document.getElementById('quantity-cart');
+var totalPriceElm = document.querySelector('.js-total-price');
+var quantityCartElm = document.querySelector('.js-quantity-cart');
 var cartEmptyElm = document.querySelector('.js-cart-empty');
 var cartNotEmptyElm = document.querySelector('.js-cart-not-empty');
 
@@ -11,7 +11,7 @@ function renderCart() {
   for (var cartId in cartList) {
     var item = productsList[cartId];
     var quantity = cartList[cartId].quantity;
-    var priceDiscount = (item.price - item.discount * item.price).toFixed(2);
+    var priceDiscount = convertToFixed((item.price - item.discount * item.price), 2);
 
     cartListElm.innerHTML += `<li class="cart-item js-cart-item cart-item-${item.id}">
       <div class="cart-item-left">
@@ -29,8 +29,8 @@ function renderCart() {
           </div>
           <p class="cart-total-item">
             Total: 
-            <span class="js-total-item" id="${"total-item-" +item.id}">
-              ${item.discount ? (priceDiscount * quantity).toFixed(2) : (item.price * quantity).toFixed(2)}
+            <span class="js-item-total ${"js-item-total-" +item.id}">
+              ${item.discount ? convertToFixed((priceDiscount * quantity),2) : convertToFixed((item.price * quantity),2)}
             </span>
           </p>
         </div>
@@ -52,49 +52,55 @@ function renderCart() {
         <button class="btn remove-btn js-remove-btn" data-id="${item.id}">Remove</button>
       </div>
     </li>`;
-     item.discount ? total += priceDiscount * quantity : total += item.price * quantity;
+    item.discount ? total += priceDiscount * quantity : total += item.price * quantity;
   }
-
-  totalPriceElm.innerHTML = total.toFixed(2);
+  totalPriceElm.innerHTML = convertToFixed(total, 2);
+  addEventUpdateBtn('.js-btn-inscrease', 1);
+  addEventUpdateBtn('.js-btn-descrease', -1);
+  addEventToRemoveBtn();
 }
 
-function updatePrice (cartItem, priceCurrent, id, value) {
+function updatePrice (cartItem, priceCurrent, value) {
   var price = 0;
   if(cartItem.discount) {
     var priceDiscount = cartItem.price - cartItem.discount * cartItem.price;
-    price = (priceCurrent + priceDiscount * value).toFixed(2);
+    price = priceCurrent + priceDiscount * value;
   }
   else {
-    price = (priceCurrent + cartItem.price * value).toFixed(2);
+    price = priceCurrent + cartItem.price * value;
   }
-  return price;
+  return convertToFixed(price, 2);
 }
 
-function updateQuantity(selector, value) {
-  var updateBtns = document.querySelectorAll(selector);
-  updateBtns.forEach(function(btn) {
-    btn.addEventListener('click', function() {
-      var id = this.getAttribute('data-id');
-      var cartList = getStorage(listKeys.cartList) || {};
-      var inputQuantity = document.getElementById('quantity' + id);
-      var cartItem = productsList[id];
-      var quantityUpdate = +inputQuantity.value + value;
-      if (quantityUpdate == 0) {
-        removeCartItem(id);
-        return;
-      }
-      inputQuantity.value = quantityUpdate;
-      cartList[id].quantity += value;
-      setStorage(listKeys.cartList, cartList);
-      
-      quantityCartElm.innerHTML = +quantityCartElm.innerHTML + value;
-      
-      var totalItemElm = document.getElementById('total-item-' + id);
-      var totalPrice = updatePrice(cartItem, +totalPriceElm.innerHTML, id, value);
-      var totalItem = updatePrice(cartItem, +totalItemElm.innerHTML, id, value);;
+function updateQuantity (value, target) {
+  var id = target.getAttribute('data-id');
+  var cartList = getStorage(listKeys.cartList) || {};
+  var inputQuantity = document.getElementById('quantity' + id);
+  var cartItem = productsList[id];
+  var quantityUpdate = +inputQuantity.value + value;
+  if (quantityUpdate === 0) {
+    removeCartItem(id);
+    return;
+  }
+  inputQuantity.value = quantityUpdate;
+  cartList[id].quantity += value;
+  setStorage(listKeys.cartList, cartList);
+  
+  quantityCartElm.innerHTML = +quantityCartElm.innerHTML + value;
+  
+  var totalItemElm = document.querySelector('.js-item-total-' + id);
+  var totalPrice = updatePrice(cartItem, +totalPriceElm.innerHTML, value);
+  var totalItem = updatePrice(cartItem, +totalItemElm.innerHTML, value);
 
-      totalPriceElm.innerHTML = totalPrice;
-      totalItemElm.innerHTML = totalItem;
+  totalPriceElm.innerHTML = totalPrice;
+  totalItemElm.innerHTML = totalItem;
+}
+
+function addEventUpdateBtn(selector, value) {
+  var updateBtnsElm = document.querySelectorAll(selector);
+  updateBtnsElm.forEach(function(btn) {
+    btn.addEventListener('click', function(e) {
+      updateQuantity(value, e.target)
     })
   })
 }
@@ -106,24 +112,16 @@ function removeCartItem(id) {
   if (cartItem) {
     cartItem.remove();
   }
-  checkCartEmpty();
+  renderEmptyCart();
 
   var quantity = +quantityCartElm.innerHTML - cartList[id].quantity;
   quantityCartElm.innerHTML = quantity;
 
-  var totalPrice = updatePrice(item, +totalPriceElm.innerHTML, id, -1);
+  var totalPrice = updatePrice(item, +totalPriceElm.innerHTML, -1);
   totalPriceElm.innerHTML = totalPrice;
 
   delete cartList[id];
   setStorage(listKeys.cartList, cartList);
-}
-
-function checkCartEmpty() {
-  var cartItemsElm = document.getElementsByClassName('js-cart-item');
-  if (cartItemsElm.length === 0) {
-    cartEmptyElm.style.display = 'flex';
-    cartNotEmptyElm.style.display = 'none';
-  }
 }
 
 function addEventToRemoveBtn() {
@@ -136,18 +134,20 @@ function addEventToRemoveBtn() {
   })
 }
 
+function renderEmptyCart() {
+  var cartItemsElm = document.getElementsByClassName('js-cart-item');
+  if (cartItemsElm.length === 0) {
+    cartEmptyElm.classList.remove('hide');
+    cartNotEmptyElm.classList.add('hide');
+  }
+}
+
 function main() {
   getQuantityCart();
 
   renderCart();
 
-  checkCartEmpty();
-  
-  updateQuantity('.js-btn-inscrease', 1);
-
-  updateQuantity('.js-btn-descrease', -1);
-
-  addEventToRemoveBtn();
+  renderEmptyCart();
 }
 
 main();

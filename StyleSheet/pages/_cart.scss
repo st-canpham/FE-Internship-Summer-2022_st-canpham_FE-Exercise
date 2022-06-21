@@ -50,7 +50,7 @@
     justify-content: space-between;
   }
 
-  &-total-item {
+  &-item-total {
     span {
       color: map-get($colors, primary);
     }
@@ -107,7 +107,7 @@
   }
 
   &-empty {
-    display: none;
+    display: flex;
     flex-direction: column;
     align-items: center;
   }
