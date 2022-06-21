@@ -1,18 +1,14 @@
 $banner-height: 800px;
 .section-banner {
+  @extend %background-image_default;
   padding: 0;
   position: relative;
-  background-image: linear-gradient(
-      180deg,
-      rgba(0, 0, 0, 0.8) 0%,
-      rgba(0, 0, 0, 0.5) 100%
-    ),
-    url("../img/fashion-banner-1.png");
+  background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.5) 100%),
+    url('../img/fashion-banner-1.png');
   height: $banner-height;
-  @extend %background-image_default;
 
   .banner-inner {
-    @extend %flex-justify-between;
+    @include flex('beetween', '');
     flex-direction: column;
     height: $banner-height;
   }
@@ -30,7 +26,7 @@ $banner-height: 800px;
   }
 
   .banner-link {
-    @extend %flex-aligns-center;
+    @include flex('', 'center');
 
     &-text {
       margin-left: 21px;
@@ -52,14 +48,14 @@ $banner-height: 800px;
     }
 
     .offer-icon {
-      @extend %flex-center;
+      @include flex-centered;
       flex-shrink: 0;
       background-color: #fff3df;
     }
   }
 
   &::after {
-    content: "";
+    content: '';
     position: absolute;
     left: 0;
     bottom: 0;
@@ -79,15 +75,15 @@ $banner-height: 800px;
 
     &::after {
       @extend %absolute-fit;
-      content: "";
+      content: '';
       background-color: #333333;
       opacity: 0.5;
     }
   }
 
   &-content {
+    @include flex('end', '');
     position: absolute;
-    @extend %flex-justify-end;
     align-items: flex-start;
     flex-direction: column;
     left: 40px;
@@ -126,19 +122,15 @@ $banner-height: 800px;
   }
 
   .benefit-icon {
-    @extend %flex-center;
+    @include flex-centered;
     background-color: map-get($colors, white);
   }
 }
 
 .section-subcribe {
-  @extend %flex-center;
-  background-image: linear-gradient(
-      90deg,
-      rgba(0, 0, 0, 0.7) 33.28%,
-      rgba(0, 0, 0, 0) 94.05%
-    ),
-    url("../img/fashion-footer.png");
+  @include flex-centered;
+  background-image: linear-gradient(90deg, rgba(0, 0, 0, 0.7) 33.28%, rgba(0, 0, 0, 0) 94.05%),
+    url('../img/fashion-footer.png');
   @extend %background-image_default;
 
   .subcribe {
@@ -152,7 +144,7 @@ $banner-height: 800px;
     }
 
     &-form {
-      @extend %flex-center;
+      @include flex-centered;
     }
 
     &-btn {
@@ -163,14 +155,10 @@ $banner-height: 800px;
   }
 }
 
-@include responsive_mobile {
+@include responsive-below(map-get($breakpoint, mobile)) {
   .section-banner {
-    background-image: linear-gradient(
-        180deg,
-        rgba(0, 0, 0, 0.8) 0%,
-        rgba(0, 0, 0, 0.5) 100%
-      ),
-      url("../../img/fashion-banner-mobile.png");
+    background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.5) 100%),
+      url('../../img/fashion-banner-mobile.png');
     height: 812px;
 
     .offers-list {
@@ -249,12 +237,8 @@ $banner-height: 800px;
 
   .section-subcribe {
     display: block;
-    background-image: linear-gradient(
-        90deg,
-        rgba(0, 0, 0, 0.7) 33.28%,
-        rgba(0, 0, 0, 0) 94.05%
-      ),
-      url("../../img/fashion-footer-mobile.png");
+    background-image: linear-gradient(90deg, rgba(0, 0, 0, 0.7) 33.28%, rgba(0, 0, 0, 0) 94.05%),
+      url('../../img/fashion-footer-mobile.png');
 
     .subcribe {
       height: 217px;

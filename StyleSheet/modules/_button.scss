@@ -1,5 +1,5 @@
 .btn {
-  @extend %flex-center;
+  @include flex-centered;
   height: 48px;
   padding: 14px 20px;
   font-family: $font-family;
@@ -44,8 +44,8 @@
     }
   }
 
-  &[class*="btn-icon"] {
-    @extend %flex-center;
+  &[class*='btn-icon'] {
+    @include flex('center', 'center');
     padding: 0;
     width: 36px;
     height: 36px;
@@ -66,7 +66,7 @@
   }
 }
 
-@include responsive_mobile {
+@include responsive-below(map-get($breakpoint, mobile)) {
   .btn {
     height: 20px;
     padding: 0 15px;

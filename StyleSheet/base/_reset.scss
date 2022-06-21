@@ -4,15 +4,6 @@
   box-sizing: border-box;
 }
 
-body {
-  position: relative;
-  line-height: 1.5;
-  font-weight: map-get($font-weight, regular);
-  font-size: map-get($font-size, sm);
-  font-family: $font-family;
-  color: map-get($colors, text);
-}
-
 ul,
 ol {
   list-style: none;
@@ -21,11 +12,4 @@ ol {
 a {
   color: map-get($colors, text);
   text-decoration: none;
-}
-
-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
 }

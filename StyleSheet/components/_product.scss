@@ -1,6 +1,6 @@
 .product {
   position: relative;
-
+  transition: 0.2s ease-in-out;
   &-img {
     display: flex;
     margin-bottom: 16px;
@@ -31,9 +31,33 @@
     top: 30px;
     left: 27px;
   }
+
+  &-btn {
+    position: absolute;
+    left: 50%;
+    bottom: 100px;
+    height: 35px;
+    padding: 10px;
+    transform: translateX(-50%);
+    opacity: 0;
+    z-index: 1;
+  }
+
+  &:hover {
+    &::after {
+      content: '';
+      @extend %absolute-fit;
+      background-color: #acacac;
+      opacity: 0.2;
+    }
+
+    .product-btn {
+      opacity: 1;
+    }
+  }
 }
 
-@include responsive_mobile {
+@include responsive-below(map-get($breakpoint, mobile)) {
   .product {
     &-img {
       margin-bottom: 0;
