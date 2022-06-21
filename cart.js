@@ -96,11 +96,13 @@ function updateQuantity (value, target) {
 
 function addEventUpdateBtn(selector, value) {
   var updateBtnsElm = document.querySelectorAll(selector);
-  updateBtnsElm.forEach(function(btn) {
-    btn.addEventListener('click', function(e) {
-      updateQuantity(value, e.target)
+  if(updateBtnsElm.length) {
+    updateBtnsElm.forEach(function(btn) {
+      btn.addEventListener('click', function(e) {
+        updateQuantity(value, e.target)
+      })
     })
-  })
+  }
 }
 
 function removeCartItem(id) {
@@ -124,12 +126,14 @@ function removeCartItem(id) {
 
 function addEventToRemoveBtn() {
   var removeBtns = document.querySelectorAll('.js-remove-btn');
-  removeBtns.forEach(function(btn) {
-    btn.addEventListener('click', function() {
-      var id = btn.getAttribute('data-id');
-      removeCartItem(id);
+  if (removeBtns.length) {
+    removeBtns.forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var id = btn.getAttribute('data-id');
+        removeCartItem(id);
+      })
     })
-  })
+  }
 }
 
 function renderEmptyCart() {
