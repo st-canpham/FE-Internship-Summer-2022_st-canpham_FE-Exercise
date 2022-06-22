@@ -4,7 +4,7 @@ export const listKeys = {
 };
 
 export const getStorage = (key: string) => {
-  return JSON.parse(`${localStorage.getItem(key)}` || '');
+  return JSON.parse(localStorage.getItem(key) || '{}');
 };
   
 export const setStorage = (key: string, value: any) => {
@@ -12,11 +12,11 @@ export const setStorage = (key: string, value: any) => {
 };
 
 export const getQuantityCart = () => {
-  const cartList = getStorage(listKeys.cartList) || {};
+  const cartList = getStorage(listKeys.cartList);
   let quantityCart = 0;
   const cartLength = Object.keys(cartList).length;
   if (cartLength) {
-    for (var cartId in cartList) {
+    for (let cartId in cartList) {
       quantityCart += cartList[cartId].quantity;
     }
   }
@@ -34,6 +34,6 @@ export const convertToFixed = (value: number, count: number) => {
   return +value.toFixed(count);
 };
 
-export const calcPriceDiscount = (priceCurrent: number, discount: number) => {
-  return priceCurrent - priceCurrent * discount;
+export const calcPriceDiscount = (originalPrice: number, discount: number) => {
+  return originalPrice - originalPrice * discount;
 };

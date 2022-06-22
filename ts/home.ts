@@ -1,4 +1,12 @@
-import { listKeys, getStorage, setStorage, renderQuantityCart, convertToFixed, calcPriceDiscount } from './base.js';
+import {
+  listKeys, 
+  getStorage, 
+  setStorage, 
+  renderQuantityCart, 
+  convertToFixed, 
+  calcPriceDiscount 
+} 
+from './base.js';
 
 const listProductsLocal = {
   1: {
@@ -34,7 +42,7 @@ const productsListElm: HTMLElement | null = document.querySelector('.js-products
 
 const renderProducts = () => {
   renderQuantityCart();
-  const productsList = getStorage(listKeys.productsList) || {};
+  const productsList = getStorage(listKeys.productsList);
   const productsLength = Object.keys(productsList).length;
   if (productsLength && productsListElm) {
     for (let id in productsList) {
@@ -65,9 +73,13 @@ const renderProducts = () => {
 };
 
 const addToCart = (target: HTMLElement) => {
-  const cartList = getStorage(listKeys.cartList) || {};
+  const cartList = getStorage(listKeys.cartList);
   const id: number = Number(target.dataset.id);
-  cartList?.[id] ? cartList[id].quantity += 1 : cartList[id] = {id, quantity: 1};
+  if (cartList?.[id]) {
+    cartList[id].quantity += 1;
+  } else {
+    cartList[id] = {id, quantity: 1};
+  }
   setStorage(listKeys.cartList, cartList);
   renderQuantityCart();
 };

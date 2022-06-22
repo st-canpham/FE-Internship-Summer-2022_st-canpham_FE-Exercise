@@ -1,8 +1,16 @@
-import { listKeys, getStorage, setStorage, renderQuantityCart, convertToFixed, calcPriceDiscount } from './base.js';
+import {
+  listKeys, 
+  getStorage, 
+  setStorage, 
+  renderQuantityCart, 
+  convertToFixed, 
+  calcPriceDiscount 
+} 
+from './base.js';
 
-const checkEmptyCart = () => {
-  const cartList = getStorage(listKeys.cartList) || {};
-  return Object.keys(cartList).length ? false : true;
+const isEmptyCart = () => {
+  const cartList = getStorage(listKeys.cartList);
+  return !Object.keys(cartList).length;
 };
 
 const renderEmptyCart = () => {
@@ -22,9 +30,9 @@ const renderTotalPrice = (totalValue: string) => {
 };
 
 const removeCartItem = (id: number) => {
-  const cartList = getStorage(listKeys.cartList) || {};
-  const productsList = getStorage(listKeys.productsList) || {};
-  const item = productsList[+id];
+  const cartList = getStorage(listKeys.cartList);
+  const productsList = getStorage(listKeys.productsList);
+  const item = productsList[id];
   const cartItemElm: HTMLElement | null = document.querySelector('.js-cart-item-' +id);
   if (cartItemElm) {
     cartItemElm.remove();
@@ -40,7 +48,7 @@ const removeCartItem = (id: number) => {
   delete cartList[id];
   setStorage(listKeys.cartList, cartList);
   renderQuantityCart();
-  checkEmptyCart() && renderEmptyCart();
+  isEmptyCart() && renderEmptyCart();
 };
 
 const addEventToRemoveBtn = () => {
@@ -62,8 +70,8 @@ const updatePrice = (item: any, priceCurrent: number, updateValue: number) => {
 };
 
 const updateQuantityCartItem = (target: HTMLElement, updateValue: number) => {
-  const cartList = getStorage(listKeys.cartList) || {};
-  const productsList = getStorage(listKeys.productsList) || {};
+  const cartList = getStorage(listKeys.cartList);
+  const productsList = getStorage(listKeys.productsList);
   const id = Number(target.dataset.id);
   const item = productsList[id];
   const inputQuantityElm: HTMLInputElement | null = document.querySelector('.js-quantity-' + id);
@@ -71,24 +79,18 @@ const updateQuantityCartItem = (target: HTMLElement, updateValue: number) => {
     const quantityUpdate = +inputQuantityElm.value + updateValue;
     if (quantityUpdate === 0) {
       removeCartItem(id);
-      checkEmptyCart() && renderEmptyCart();
+      isEmptyCart() && renderEmptyCart();
       return;
     }
+    inputQuantityElm.value = `${+inputQuantityElm.value + updateValue}`;
   }
-  const inputQuanityElm: HTMLInputElement | null = document.querySelector('.js-quantity-' +id);
   const totalPriceElm: HTMLInputElement | null = document.querySelector('.js-total-price');
   const totalPriceItemElm: HTMLInputElement | null = document.querySelector('.js-item-total-'+id);
-  if (inputQuanityElm) {
-    let inputQuantityValue = +inputQuanityElm.value + updateValue;
-    inputQuanityElm.value = `${inputQuantityValue}`;
-  }
   if (totalPriceElm) {
-    let totalPriceValue = updatePrice(item, +totalPriceElm.innerHTML, updateValue);
-    renderTotalPrice(`${totalPriceValue}`);
+    renderTotalPrice(`${updatePrice(item, +totalPriceElm.innerHTML, updateValue)}`);
   }
   if (totalPriceItemElm) {
-    let totalPriceItemValue = updatePrice(item, +totalPriceItemElm.innerHTML, updateValue);
-    totalPriceItemElm.innerHTML = `${totalPriceItemValue}`;
+    totalPriceItemElm.innerHTML = `${updatePrice(item, +totalPriceItemElm.innerHTML, updateValue)}`;
   }
   cartList[id].quantity += updateValue;
   setStorage(listKeys.cartList, cartList);
@@ -108,9 +110,9 @@ const addEventToUpdateBtn = (selector: string, updateValue: number) => {
 
 const renderCart = () => {
   renderQuantityCart();
-  const cartList = getStorage(listKeys.cartList) || {};
-  const productsList = getStorage(listKeys.productsList) || {};
-  let cartListElm: HTMLElement | null = document.querySelector('.js-cart-list');
+  const cartList = getStorage(listKeys.cartList);
+  const productsList = getStorage(listKeys.productsList);
+  const cartListElm: HTMLElement | null = document.querySelector('.js-cart-list');
   let total = 0;
   if (Object.keys(cartList).length && cartListElm) {
     for (let id in cartList) {
@@ -165,4 +167,4 @@ const renderCart = () => {
   addEventToUpdateBtn('.js-btn-descrease', -1);
 };
 
-checkEmptyCart() ? renderEmptyCart() : renderCart();
+isEmptyCart() ? renderEmptyCart() : renderCart();

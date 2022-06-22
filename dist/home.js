@@ -1,5 +1,5 @@
 import { listKeys, getStorage, setStorage, renderQuantityCart, convertToFixed, calcPriceDiscount } from './base.js';
-var listProductsLocal = {
+const listProductsLocal = {
     1: {
         id: 1,
         name: 'T-Shirt Summer Vibe',
@@ -27,37 +27,61 @@ var listProductsLocal = {
     },
 };
 setStorage(listKeys.productsList, listProductsLocal);
-var productsListElm = document.querySelector('.js-products-list');
-var renderProducts = function () {
+const productsListElm = document.querySelector('.js-products-list');
+const renderProducts = () => {
     renderQuantityCart();
-    var productsList = getStorage(listKeys.productsList) || {};
-    var productsLength = Object.keys(productsList).length;
+    const productsList = getStorage(listKeys.productsList);
+    const productsLength = Object.keys(productsList).length;
     if (productsLength && productsListElm) {
-        for (var id in productsList) {
-            var productItem = productsList[id];
-            var priceDiscount = convertToFixed(calcPriceDiscount(productItem.price, productItem.discount), 2);
-            productsListElm.innerHTML += "<li class=\"product-item col-3 col-sm-6\">\n             <div class=\"product\">\n               <div class=\"product-img\">\n               <img src=\"".concat(productItem.thumbnail, "\" alt=\"T-Shirt Summer Vibes\" />\n               </div>\n               ").concat(productItem.discount ? "<span class=\"badge badge-primary\">".concat(productItem.discount * 100 + "%", "</span>") : "", "\n               <div class=\"product-info\">\n                 <h4 class=\"product-name\">").concat(productItem.name, "</h4>\n                 <div class=\"product-price\">\n                   ").concat(productItem.discount ? "<p class=\"price-discount\">".concat(priceDiscount + "$", "</p>") : "", "\n                   <p class=\"price-current\">").concat(productItem.price + "$", "</p>\n                 </div>\n               </div>\n               <button\n                 class=\"btn btn-primary product-btn js-buy-btn\"\n                 data-id=\"").concat(productItem.id, "\"\n               >ADD TO CART\n               </button>\n             </div>\n           </li>");
+        for (let id in productsList) {
+            let productItem = productsList[id];
+            let priceDiscount = convertToFixed(calcPriceDiscount(productItem.price, productItem.discount), 2);
+            productsListElm.innerHTML += `<li class="product-item col-3 col-sm-6">
+             <div class="product">
+               <div class="product-img">
+               <img src="${productItem.thumbnail}" alt="T-Shirt Summer Vibes" />
+               </div>
+               ${productItem.discount ? `<span class="badge badge-primary">${productItem.discount * 100 + "%"}</span>` : ""}
+               <div class="product-info">
+                 <h4 class="product-name">${productItem.name}</h4>
+                 <div class="product-price">
+                   ${productItem.discount ? `<p class="price-discount">${priceDiscount + "$"}</p>` : ""}
+                   <p class="price-current">${productItem.price + "$"}</p>
+                 </div>
+               </div>
+               <button
+                 class="btn btn-primary product-btn js-buy-btn"
+                 data-id="${productItem.id}"
+               >ADD TO CART
+               </button>
+             </div>
+           </li>`;
         }
     }
 };
-var addToCart = function (target) {
-    var cartList = getStorage(listKeys.cartList) || {};
-    var id = Number(target.dataset.id);
-    (cartList === null || cartList === void 0 ? void 0 : cartList[id]) ? cartList[id].quantity += 1 : cartList[id] = { id: id, quantity: 1 };
+const addToCart = (target) => {
+    const cartList = getStorage(listKeys.cartList);
+    const id = Number(target.dataset.id);
+    if (cartList === null || cartList === void 0 ? void 0 : cartList[id]) {
+        cartList[id].quantity += 1;
+    }
+    else {
+        cartList[id] = { id, quantity: 1 };
+    }
     setStorage(listKeys.cartList, cartList);
     renderQuantityCart();
 };
-var addEventToBuyBtn = function () {
-    var buyBtnsElm = document.querySelectorAll('.js-buy-btn');
+const addEventToBuyBtn = () => {
+    const buyBtnsElm = document.querySelectorAll('.js-buy-btn');
     if (buyBtnsElm.length) {
-        buyBtnsElm.forEach(function (btn) {
-            btn.addEventListener('click', function (e) {
+        buyBtnsElm.forEach(btn => {
+            btn.addEventListener('click', (e) => {
                 addToCart(e.target);
             });
         });
     }
 };
-var main = function () {
+const main = () => {
     renderProducts();
     addEventToBuyBtn();
 };
