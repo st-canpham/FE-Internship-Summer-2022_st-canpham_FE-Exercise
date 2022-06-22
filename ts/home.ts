@@ -26,7 +26,7 @@ const listProductsLocal = {
     thumbnail: 'img/product-4.png',
     price: 119.99,
   },
-}
+};
 
 setStorage(listKeys.productsList, listProductsLocal);
 
@@ -36,8 +36,8 @@ const renderProducts = () => {
   renderQuantityCart();
   const productsList = getStorage(listKeys.productsList) || {};
   const productsLength = Object.keys(productsList).length;
-  if(productsLength && productsListElm) {
-    for(let id in productsList) {
+  if (productsLength && productsListElm) {
+    for (let id in productsList) {
       let productItem = productsList[id];
       let priceDiscount = convertToFixed(calcPriceDiscount(productItem.price, productItem.discount), 2);
       productsListElm.innerHTML += `<li class="product-item col-3 col-sm-6">
@@ -62,7 +62,7 @@ const renderProducts = () => {
            </li>`;
     }
   }
-}
+};
 
 const addToCart = (target: HTMLElement) => {
   const cartList = getStorage(listKeys.cartList) || {};
@@ -70,20 +70,22 @@ const addToCart = (target: HTMLElement) => {
   cartList?.[id] ? cartList[id].quantity += 1 : cartList[id] = {id, quantity: 1};
   setStorage(listKeys.cartList, cartList);
   renderQuantityCart();
-}
+};
 
 const addEventToBuyBtn = () => {
   const buyBtnsElm: NodeList | null = document.querySelectorAll('.js-buy-btn');
-  if(buyBtnsElm.length) {
+  if (buyBtnsElm.length) {
     buyBtnsElm.forEach(btn => {
-      btn.addEventListener('click', (e: Event) => addToCart(e.target as HTMLElement));
+      btn.addEventListener('click', (e: Event) => {
+        addToCart(e.target as HTMLElement)
+      })
     })
   }
-}
+};
 
 const main = () => {
   renderProducts();
   addEventToBuyBtn();
-}
+};
 
 main();

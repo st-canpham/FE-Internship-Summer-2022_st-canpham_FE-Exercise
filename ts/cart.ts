@@ -8,7 +8,7 @@ const checkEmptyCart = () => {
 const renderEmptyCart = () => {
   const emptyCartElm: HTMLElement | null = document.querySelector('.js-cart-empty');
   const notEmptyCartElm: HTMLElement | null = document.querySelector('.js-cart-not-empty');
-  if(emptyCartElm && notEmptyCartElm) {
+  if (emptyCartElm && notEmptyCartElm) {
     emptyCartElm.classList.remove('hide');
     notEmptyCartElm.classList.add('hide');
   }
@@ -16,7 +16,7 @@ const renderEmptyCart = () => {
 
 const renderTotalPrice = (totalValue: string) => {
   const totalPriceElm: HTMLElement | null = document.querySelector('.js-total-price');
-  if(totalPriceElm) {
+  if (totalPriceElm) {
     totalPriceElm.innerHTML = totalValue;
   }
 };
@@ -26,11 +26,11 @@ const removeCartItem = (id: number) => {
   const productsList = getStorage(listKeys.productsList) || {};
   const item = productsList[+id];
   const cartItemElm: HTMLElement | null = document.querySelector('.js-cart-item-' +id);
-  if(cartItemElm) {
+  if (cartItemElm) {
     cartItemElm.remove();
   }
   const totalPriceElm: HTMLElement | null = document.querySelector('.js-total-price');
-  if(totalPriceElm) {
+  if (totalPriceElm) {
     const totalPriceCurrent = +totalPriceElm.innerHTML;
     const priceDiscount = convertToFixed(calcPriceDiscount(item.price, item.discount), 2);
     const totalPrice = totalPriceCurrent - (priceDiscount || item.price) * cartList[id].quantity;
@@ -45,7 +45,7 @@ const removeCartItem = (id: number) => {
 
 const addEventToRemoveBtn = () => {
   const removeBtnsElm: NodeList | null = document.querySelectorAll('.js-remove-btn');
-  if(removeBtnsElm) {
+  if (removeBtnsElm) {
     removeBtnsElm.forEach(btn => {
       btn.addEventListener('click', (e) => {
         const id = Number((e.target as HTMLElement).dataset.id);
@@ -67,9 +67,9 @@ const updateQuantityCartItem = (target: HTMLElement, updateValue: number) => {
   const id = Number(target.dataset.id);
   const item = productsList[id];
   const inputQuantityElm: HTMLInputElement | null = document.querySelector('.js-quantity-' + id);
-  if(inputQuantityElm) {
+  if (inputQuantityElm) {
     const quantityUpdate = +inputQuantityElm.value + updateValue;
-    if(quantityUpdate === 0) {
+    if (quantityUpdate === 0) {
       removeCartItem(id);
       checkEmptyCart() && renderEmptyCart();
       return;
@@ -112,8 +112,8 @@ const renderCart = () => {
   const productsList = getStorage(listKeys.productsList) || {};
   let cartListElm: HTMLElement | null = document.querySelector('.js-cart-list');
   let total = 0;
-  if(Object.keys(cartList).length && cartListElm) {
-    for(let id in cartList) {
+  if (Object.keys(cartList).length && cartListElm) {
+    for (let id in cartList) {
       const item = productsList[id];
       const quantity = cartList[id].quantity;
       const priceDiscount = convertToFixed(calcPriceDiscount(item.price, item.discount), 2);
@@ -166,4 +166,3 @@ const renderCart = () => {
 };
 
 checkEmptyCart() ? renderEmptyCart() : renderCart();
-

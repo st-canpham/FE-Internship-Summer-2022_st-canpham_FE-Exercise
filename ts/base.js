@@ -19,7 +19,6 @@ export var getQuantityCart = function () {
     }
     return quantityCart;
 };
-getQuantityCart();
 export var renderQuantityCart = function () {
     var quantityCartElm = document.querySelector('.js-quantity-cart');
     if (quantityCartElm) {

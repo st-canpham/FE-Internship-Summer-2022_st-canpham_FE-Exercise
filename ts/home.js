@@ -51,7 +51,9 @@ var addEventToBuyBtn = function () {
     var buyBtnsElm = document.querySelectorAll('.js-buy-btn');
     if (buyBtnsElm.length) {
         buyBtnsElm.forEach(function (btn) {
-            btn.addEventListener('click', function (e) { return addToCart(e.target); });
+            btn.addEventListener('click', function (e) {
+                addToCart(e.target);
+            });
         });
     }
 };
