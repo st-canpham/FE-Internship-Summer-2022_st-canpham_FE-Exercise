@@ -1,4 +1,4 @@
-"use strict";
+import { listKeys, getStorage, setStorage, renderQuantityCart, convertToFixed, calcPriceDiscount } from './base.js';
 var listProductsLocal = {
     1: {
         id: 1,

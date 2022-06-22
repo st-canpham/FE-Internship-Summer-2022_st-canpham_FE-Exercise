@@ -1,3 +1,5 @@
+import { listKeys, getStorage, setStorage, renderQuantityCart, convertToFixed, calcPriceDiscount } from './base.js';
+
 const listProductsLocal = {
   1: {
     id: 1,

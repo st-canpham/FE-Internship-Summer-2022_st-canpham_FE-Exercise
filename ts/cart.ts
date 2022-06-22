@@ -1,3 +1,5 @@
+import { listKeys, getStorage, setStorage, renderQuantityCart, convertToFixed, calcPriceDiscount } from './base.js';
+
 const checkEmptyCart = () => {
   const cartList = getStorage(listKeys.cartList) || {};
   return Object.keys(cartList).length ? false : true;

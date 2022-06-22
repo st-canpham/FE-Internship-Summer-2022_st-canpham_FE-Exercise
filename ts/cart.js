@@ -1,4 +1,4 @@
-"use strict";
+import { listKeys, getStorage, setStorage, renderQuantityCart, convertToFixed, calcPriceDiscount } from './base.js';
 var checkEmptyCart = function () {
     var cartList = getStorage(listKeys.cartList) || {};
     return Object.keys(cartList).length ? false : true;

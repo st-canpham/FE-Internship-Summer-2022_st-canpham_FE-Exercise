@@ -1,17 +1,17 @@
-const listKeys = {
+export const listKeys = {
 	productsList: 'product-list',
 	cartList: 'cart-list',
 }
 
-const getStorage = (key: string) => {
+export const getStorage = (key: string) => {
   return JSON.parse(`${localStorage.getItem(key)}` || '');
 }
 	
-const setStorage = (key: string, value: any) => {
+export const setStorage = (key: string, value: any) => {
 	localStorage.setItem(key, JSON.stringify(value));
 }
 
-const getQuantityCart = () => {
+export const getQuantityCart = () => {
 	const cartList = getStorage(listKeys.cartList) || {};
   let quantityCart = 0;
   const cartLength = Object.keys(cartList).length;
@@ -25,17 +25,17 @@ const getQuantityCart = () => {
 
 getQuantityCart();
 
-const renderQuantityCart = () => {
+export const renderQuantityCart = () => {
   const quantityCartElm = document.querySelector('.js-quantity-cart');
   if(quantityCartElm) {
     quantityCartElm.innerHTML = `${getQuantityCart()}`;
   }
 }
 
-const convertToFixed = (value: number, count: number) => {
+export const convertToFixed = (value: number, count: number) => {
 	return +value.toFixed(count);
 }
 
-const calcPriceDiscount = (priceCurrent: number, discount: number) => {
+export const calcPriceDiscount = (priceCurrent: number, discount: number) => {
   return priceCurrent - priceCurrent * discount;
 }
