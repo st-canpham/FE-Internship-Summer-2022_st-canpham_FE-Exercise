@@ -32,7 +32,7 @@ const productsListElm: HTMLElement | null = document.querySelector('.js-products
 
 const renderProducts = () => {
   renderQuantityCart();
-  const productsList = getStorage(listKeys.productsList, {});
+  const productsList = getStorage(listKeys.productsList) || {};
   const productsLength = Object.keys(productsList).length;
   if(productsLength && productsListElm) {
     for(let id in productsList) {
@@ -62,10 +62,9 @@ const renderProducts = () => {
   }
 }
 
-// Chưa xác định được kiểu dữ liệu
-const addToCart = (target: any) => {
-  const cartList = getStorage(listKeys.cartList, {});
-  const id: number = target.getAttribute('data-id');
+const addToCart = (target: HTMLElement) => {
+  const cartList = getStorage(listKeys.cartList) || {};
+  const id: number = Number(target.dataset.id);
   cartList?.[id] ? cartList[id].quantity += 1 : cartList[id] = {id, quantity: 1};
   setStorage(listKeys.cartList, cartList);
   renderQuantityCart();
@@ -75,7 +74,7 @@ const addEventToBuyBtn = () => {
   const buyBtnsElm: NodeList | null = document.querySelectorAll('.js-buy-btn');
   if(buyBtnsElm.length) {
     buyBtnsElm.forEach(btn => {
-      btn.addEventListener('click', (e: Event) => addToCart(e.target));
+      btn.addEventListener('click', (e: Event) => addToCart(e.target as HTMLElement));
     })
   }
 }

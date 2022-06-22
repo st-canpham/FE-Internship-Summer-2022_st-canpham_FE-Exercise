@@ -3,8 +3,8 @@ const listKeys = {
 	cartList: 'cart-list',
 }
 
-const getStorage = (key: string, defaultValue: any) => {
-  return localStorage.getItem(key) ? JSON.parse(localStorage.getItem(key)|| '') : defaultValue;
+const getStorage = (key: string) => {
+  return JSON.parse(`${localStorage.getItem(key)}` || '');
 }
 	
 const setStorage = (key: string, value: any) => {
@@ -12,7 +12,7 @@ const setStorage = (key: string, value: any) => {
 }
 
 const getQuantityCart = () => {
-	const cartList = getStorage(listKeys.cartList, {});
+	const cartList = getStorage(listKeys.cartList) || {};
   let quantityCart = 0;
   const cartLength = Object.keys(cartList).length;
   if(cartLength) {

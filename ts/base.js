@@ -1,15 +1,16 @@
+"use strict";
 var listKeys = {
     productsList: 'product-list',
-    cartList: 'cart-list'
+    cartList: 'cart-list',
 };
-var getStorage = function (key, defaultValue) {
-    return localStorage.getItem(key) ? JSON.parse(localStorage.getItem(key) || '') : defaultValue;
+var getStorage = function (key) {
+    return JSON.parse("".concat(localStorage.getItem(key)) || '');
 };
 var setStorage = function (key, value) {
     localStorage.setItem(key, JSON.stringify(value));
 };
 var getQuantityCart = function () {
-    var cartList = getStorage(listKeys.cartList, {});
+    var cartList = getStorage(listKeys.cartList) || {};
     var quantityCart = 0;
     var cartLength = Object.keys(cartList).length;
     if (cartLength) {

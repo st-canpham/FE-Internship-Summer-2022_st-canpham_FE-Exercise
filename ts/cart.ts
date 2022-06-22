@@ -1,14 +1,122 @@
+const checkEmptyCart = () => {
+  const cartList = getStorage(listKeys.cartList) || {};
+  return Object.keys(cartList).length ? false : true;
+};
+
+const renderEmptyCart = () => {
+  const emptyCartElm: HTMLElement | null = document.querySelector('.js-cart-empty');
+  const notEmptyCartElm: HTMLElement | null = document.querySelector('.js-cart-not-empty');
+  if(emptyCartElm && notEmptyCartElm) {
+    emptyCartElm.classList.remove('hide');
+    notEmptyCartElm.classList.add('hide');
+  }
+};
+
+const renderTotalPrice = (totalValue: string) => {
+  const totalPriceElm: HTMLElement | null = document.querySelector('.js-total-price');
+  if(totalPriceElm) {
+    totalPriceElm.innerHTML = totalValue;
+  }
+};
+
+const removeCartItem = (id: number) => {
+  const cartList = getStorage(listKeys.cartList) || {};
+  const productsList = getStorage(listKeys.productsList) || {};
+  const item = productsList[+id];
+  const cartItemElm: HTMLElement | null = document.querySelector('.js-cart-item-' +id);
+  if(cartItemElm) {
+    cartItemElm.remove();
+  }
+  const totalPriceElm: HTMLElement | null = document.querySelector('.js-total-price');
+  if(totalPriceElm) {
+    const totalPriceCurrent = +totalPriceElm.innerHTML;
+    const priceDiscount = convertToFixed(calcPriceDiscount(item.price, item.discount), 2);
+    const totalPrice = totalPriceCurrent - (priceDiscount || item.price) * cartList[id].quantity;
+    renderTotalPrice(`${convertToFixed(totalPrice, 2)}`);
+  }
+  
+  delete cartList[id];
+  setStorage(listKeys.cartList, cartList);
+  renderQuantityCart();
+  checkEmptyCart() && renderEmptyCart();
+};
+
+const addEventToRemoveBtn = () => {
+  const removeBtnsElm: NodeList | null = document.querySelectorAll('.js-remove-btn');
+  if(removeBtnsElm) {
+    removeBtnsElm.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const id = Number((e.target as HTMLElement).dataset.id);
+        removeCartItem(id);
+      })
+    })
+  }
+};
+
+const updatePrice = (item: any, priceCurrent: number, updateValue: number) => {
+  const priceDiscount = convertToFixed(calcPriceDiscount(item.price, item.discount),2);
+  const price = priceCurrent + (priceDiscount || item.price) * updateValue;
+  return convertToFixed(price, 2);
+};
+
+const updateQuantityCartItem = (target: HTMLElement, updateValue: number) => {
+  const cartList = getStorage(listKeys.cartList) || {};
+  const productsList = getStorage(listKeys.productsList) || {};
+  const id = Number(target.dataset.id);
+  const item = productsList[id];
+  const inputQuantityElm: HTMLInputElement | null = document.querySelector('.js-quantity-' + id);
+  if(inputQuantityElm) {
+    const quantityUpdate = +inputQuantityElm.value + updateValue;
+    if(quantityUpdate === 0) {
+      removeCartItem(id);
+      checkEmptyCart() && renderEmptyCart();
+      return;
+    }
+  }
+  const inputQuanityElm: HTMLInputElement | null = document.querySelector('.js-quantity-' +id);
+  const totalPriceElm: HTMLInputElement | null = document.querySelector('.js-total-price');
+  const totalPriceItemElm: HTMLInputElement | null = document.querySelector('.js-item-total-'+id);
+  if (inputQuanityElm) {
+    let inputQuantityValue = +inputQuanityElm.value + updateValue;
+    inputQuanityElm.value = `${inputQuantityValue}`;
+  }
+  if (totalPriceElm) {
+    let totalPriceValue = updatePrice(item, +totalPriceElm.innerHTML, updateValue);
+    renderTotalPrice(`${totalPriceValue}`);
+  }
+  if (totalPriceItemElm) {
+    let totalPriceItemValue = updatePrice(item, +totalPriceItemElm.innerHTML, updateValue);
+    totalPriceItemElm.innerHTML = `${totalPriceItemValue}`;
+  }
+  cartList[id].quantity += updateValue;
+  setStorage(listKeys.cartList, cartList);
+  renderQuantityCart();
+};
+
+const addEventToUpdateBtn = (selector: string, updateValue: number) => {
+  const updateBtnsElm: NodeList | null = document.querySelectorAll(selector);
+  if (updateBtnsElm) {
+    updateBtnsElm.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        updateQuantityCartItem(e.target as HTMLElement, updateValue)
+      })
+    })
+  }
+};
+
 const renderCart = () => {
   renderQuantityCart();
-  const cartList = getStorage(listKeys.cartList, {});
-  const productsList = getStorage(listKeys.productsList, {});
+  const cartList = getStorage(listKeys.cartList) || {};
+  const productsList = getStorage(listKeys.productsList) || {};
   let cartListElm: HTMLElement | null = document.querySelector('.js-cart-list');
+  let total = 0;
   if(Object.keys(cartList).length && cartListElm) {
     for(let id in cartList) {
       const item = productsList[id];
       const quantity = cartList[id].quantity;
-      const priceDiscount = calcPriceDiscount(item.price, item.discount);
-      cartListElm.innerHTML += `<li class="cart-item js-cart-item cart-item-${item.id}">
+      const priceDiscount = convertToFixed(calcPriceDiscount(item.price, item.discount), 2);
+      total += priceDiscount * quantity || item.price * quantity; 
+      cartListElm.innerHTML += `<li class="cart-item js-cart-item js-cart-item-${item.id}">
       <div class="cart-item-left">
         <div class="cart-img">
           <img src="${item.thumbnail}" alt="" />
@@ -24,7 +132,7 @@ const renderCart = () => {
           </div>
           <p class="cart-total-item">
             Total: 
-            <span class="js-item-total ${"js-item-total-" +item.id}">
+            <span class="${"js-item-total-" +item.id}">
               ${item.discount ? convertToFixed((priceDiscount * quantity),2) : convertToFixed((item.price * quantity),2)}
             </span>
           </p>
@@ -37,7 +145,7 @@ const renderCart = () => {
             class="js-btn-descrease">
               -
           </button>
-          <input type="number" id="${'quantity' + item.id}" disabled min="0" value="${quantity}"/>
+          <input type="number" class="${'js-quantity-' + item.id}" disabled min="0" value="${quantity}"/>
           <button 
             data-id="${item.id}" 
             class="js-btn-inscrease">
@@ -49,6 +157,11 @@ const renderCart = () => {
     </li>`;
     }
   }
-}
+  renderTotalPrice(`${convertToFixed(total, 2)}`);
+  addEventToRemoveBtn();
+  addEventToUpdateBtn('.js-btn-inscrease', 1);
+  addEventToUpdateBtn('.js-btn-descrease', -1);
+};
 
-renderCart();
+checkEmptyCart() ? renderEmptyCart() : renderCart();
+
