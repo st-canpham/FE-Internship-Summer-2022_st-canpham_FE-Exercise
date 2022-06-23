@@ -3,6 +3,27 @@ export const listKeys = {
   cartList: 'cart-list',
 };
 
+export interface ProductItem {
+  id: number,
+  name: string, 
+  thumbnail: string,
+  price: number, 
+  discount: number,
+};
+
+export interface CartItem {
+  id: number,
+  quantity: number,
+};
+
+export interface ProductsList {
+  [key: number | string] : ProductItem,
+};
+
+export interface CartList {
+  [key: number | string] : CartItem,
+};
+
 export const getStorage = (key: string) => {
   return JSON.parse(localStorage.getItem(key) || '{}');
 };

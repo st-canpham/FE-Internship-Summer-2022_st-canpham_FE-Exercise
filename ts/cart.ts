@@ -4,12 +4,15 @@ import {
   setStorage, 
   renderQuantityCart, 
   convertToFixed, 
-  calcPriceDiscount 
+  calcPriceDiscount,
+  ProductItem,
+  ProductsList,
+  CartList,
 } 
 from './base.js';
 
 const isEmptyCart = () => {
-  const cartList = getStorage(listKeys.cartList);
+  const cartList: CartList = getStorage(listKeys.cartList);
   return !Object.keys(cartList).length;
 };
 
@@ -30,9 +33,9 @@ const renderTotalPrice = (totalValue: string) => {
 };
 
 const removeCartItem = (id: number) => {
-  const cartList = getStorage(listKeys.cartList);
-  const productsList = getStorage(listKeys.productsList);
-  const item = productsList[id];
+  const cartList: CartList = getStorage(listKeys.cartList);
+  const productsList: ProductsList = getStorage(listKeys.productsList);
+  const item: ProductItem = productsList[id];
   const cartItemElm: HTMLElement | null = document.querySelector('.js-cart-item-' +id);
   if (cartItemElm) {
     cartItemElm.remove();
@@ -63,17 +66,17 @@ const addEventToRemoveBtn = () => {
   }
 };
 
-const updatePrice = (item: any, priceCurrent: number, updateValue: number) => {
+const updatePrice = (item: ProductItem, priceCurrent: number, updateValue: number) => {
   const priceDiscount = convertToFixed(calcPriceDiscount(item.price, item.discount),2);
   const price = priceCurrent + (priceDiscount || item.price) * updateValue;
   return convertToFixed(price, 2);
 };
 
 const updateQuantityCartItem = (target: HTMLElement, updateValue: number) => {
-  const cartList = getStorage(listKeys.cartList);
-  const productsList = getStorage(listKeys.productsList);
+  const cartList: CartList = getStorage(listKeys.cartList);
+  const productsList: ProductsList = getStorage(listKeys.productsList);
   const id = Number(target.dataset.id);
-  const item = productsList[id];
+  const item: ProductItem = productsList[id];
   const inputQuantityElm: HTMLInputElement | null = document.querySelector('.js-quantity-' + id);
   if (inputQuantityElm) {
     const quantityUpdate = +inputQuantityElm.value + updateValue;
@@ -110,14 +113,14 @@ const addEventToUpdateBtn = (selector: string, updateValue: number) => {
 
 const renderCart = () => {
   renderQuantityCart();
-  const cartList = getStorage(listKeys.cartList);
-  const productsList = getStorage(listKeys.productsList);
+  const cartList: CartList = getStorage(listKeys.cartList);
+  const productsList: ProductsList = getStorage(listKeys.productsList);
   const cartListElm: HTMLElement | null = document.querySelector('.js-cart-list');
   let total = 0;
   if (Object.keys(cartList).length && cartListElm) {
     for (let id in cartList) {
-      const item = productsList[id];
-      const quantity = cartList[id].quantity;
+      const item: ProductItem = productsList[id];
+      const quantity: number = cartList[id].quantity;
       const priceDiscount = convertToFixed(calcPriceDiscount(item.price, item.discount), 2);
       total += priceDiscount * quantity || item.price * quantity; 
       cartListElm.innerHTML += `<li class="cart-item js-cart-item js-cart-item-${item.id}">

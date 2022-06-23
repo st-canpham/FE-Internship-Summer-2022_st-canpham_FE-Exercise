@@ -1,33 +1,37 @@
-export const listKeys = {
+export var listKeys = {
     productsList: 'product-list',
     cartList: 'cart-list',
 };
-export const getStorage = (key) => {
+;
+;
+;
+;
+export var getStorage = function (key) {
     return JSON.parse(localStorage.getItem(key) || '{}');
 };
-export const setStorage = (key, value) => {
+export var setStorage = function (key, value) {
     localStorage.setItem(key, JSON.stringify(value));
 };
-export const getQuantityCart = () => {
-    const cartList = getStorage(listKeys.cartList);
-    let quantityCart = 0;
-    const cartLength = Object.keys(cartList).length;
+export var getQuantityCart = function () {
+    var cartList = getStorage(listKeys.cartList);
+    var quantityCart = 0;
+    var cartLength = Object.keys(cartList).length;
     if (cartLength) {
-        for (let cartId in cartList) {
+        for (var cartId in cartList) {
             quantityCart += cartList[cartId].quantity;
         }
     }
     return quantityCart;
 };
-export const renderQuantityCart = () => {
-    const quantityCartElm = document.querySelector('.js-quantity-cart');
+export var renderQuantityCart = function () {
+    var quantityCartElm = document.querySelector('.js-quantity-cart');
     if (quantityCartElm) {
-        quantityCartElm.innerHTML = `${getQuantityCart()}`;
+        quantityCartElm.innerHTML = "".concat(getQuantityCart());
     }
 };
-export const convertToFixed = (value, count) => {
+export var convertToFixed = function (value, count) {
     return +value.toFixed(count);
 };
-export const calcPriceDiscount = (originalPrice, discount) => {
+export var calcPriceDiscount = function (originalPrice, discount) {
     return originalPrice - originalPrice * discount;
 };

@@ -1,149 +1,111 @@
-import { listKeys, getStorage, setStorage, renderQuantityCart, convertToFixed, calcPriceDiscount } from './base.js';
-const isEmptyCart = () => {
-    const cartList = getStorage(listKeys.cartList);
+import { listKeys, getStorage, setStorage, renderQuantityCart, convertToFixed, calcPriceDiscount, } from './base.js';
+var isEmptyCart = function () {
+    var cartList = getStorage(listKeys.cartList);
     return !Object.keys(cartList).length;
 };
-const renderEmptyCart = () => {
-    const emptyCartElm = document.querySelector('.js-cart-empty');
-    const notEmptyCartElm = document.querySelector('.js-cart-not-empty');
+var renderEmptyCart = function () {
+    var emptyCartElm = document.querySelector('.js-cart-empty');
+    var notEmptyCartElm = document.querySelector('.js-cart-not-empty');
     if (emptyCartElm && notEmptyCartElm) {
         emptyCartElm.classList.remove('hide');
         notEmptyCartElm.classList.add('hide');
     }
 };
-const renderTotalPrice = (totalValue) => {
-    const totalPriceElm = document.querySelector('.js-total-price');
+var renderTotalPrice = function (totalValue) {
+    var totalPriceElm = document.querySelector('.js-total-price');
     if (totalPriceElm) {
         totalPriceElm.innerHTML = totalValue;
     }
 };
-const removeCartItem = (id) => {
-    const cartList = getStorage(listKeys.cartList);
-    const productsList = getStorage(listKeys.productsList);
-    const item = productsList[id];
-    const cartItemElm = document.querySelector('.js-cart-item-' + id);
+var removeCartItem = function (id) {
+    var cartList = getStorage(listKeys.cartList);
+    var productsList = getStorage(listKeys.productsList);
+    var item = productsList[id];
+    var cartItemElm = document.querySelector('.js-cart-item-' + id);
     if (cartItemElm) {
         cartItemElm.remove();
     }
-    const totalPriceElm = document.querySelector('.js-total-price');
+    var totalPriceElm = document.querySelector('.js-total-price');
     if (totalPriceElm) {
-        const totalPriceCurrent = +totalPriceElm.innerHTML;
-        const priceDiscount = convertToFixed(calcPriceDiscount(item.price, item.discount), 2);
-        const totalPrice = totalPriceCurrent - (priceDiscount || item.price) * cartList[id].quantity;
-        renderTotalPrice(`${convertToFixed(totalPrice, 2)}`);
+        var totalPriceCurrent = +totalPriceElm.innerHTML;
+        var priceDiscount = convertToFixed(calcPriceDiscount(item.price, item.discount), 2);
+        var totalPrice = totalPriceCurrent - (priceDiscount || item.price) * cartList[id].quantity;
+        renderTotalPrice("".concat(convertToFixed(totalPrice, 2)));
     }
     delete cartList[id];
     setStorage(listKeys.cartList, cartList);
     renderQuantityCart();
     isEmptyCart() && renderEmptyCart();
 };
-const addEventToRemoveBtn = () => {
-    const removeBtnsElm = document.querySelectorAll('.js-remove-btn');
+var addEventToRemoveBtn = function () {
+    var removeBtnsElm = document.querySelectorAll('.js-remove-btn');
     if (removeBtnsElm) {
-        removeBtnsElm.forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                const id = Number(e.target.dataset.id);
+        removeBtnsElm.forEach(function (btn) {
+            btn.addEventListener('click', function (e) {
+                var id = Number(e.target.dataset.id);
                 removeCartItem(id);
             });
         });
     }
 };
-const updatePrice = (item, priceCurrent, updateValue) => {
-    const priceDiscount = convertToFixed(calcPriceDiscount(item.price, item.discount), 2);
-    const price = priceCurrent + (priceDiscount || item.price) * updateValue;
+var updatePrice = function (item, priceCurrent, updateValue) {
+    var priceDiscount = convertToFixed(calcPriceDiscount(item.price, item.discount), 2);
+    var price = priceCurrent + (priceDiscount || item.price) * updateValue;
     return convertToFixed(price, 2);
 };
-const updateQuantityCartItem = (target, updateValue) => {
-    const cartList = getStorage(listKeys.cartList);
-    const productsList = getStorage(listKeys.productsList);
-    const id = Number(target.dataset.id);
-    const item = productsList[id];
-    const inputQuantityElm = document.querySelector('.js-quantity-' + id);
+var updateQuantityCartItem = function (target, updateValue) {
+    var cartList = getStorage(listKeys.cartList);
+    var productsList = getStorage(listKeys.productsList);
+    var id = Number(target.dataset.id);
+    var item = productsList[id];
+    var inputQuantityElm = document.querySelector('.js-quantity-' + id);
     if (inputQuantityElm) {
-        const quantityUpdate = +inputQuantityElm.value + updateValue;
+        var quantityUpdate = +inputQuantityElm.value + updateValue;
         if (quantityUpdate === 0) {
             removeCartItem(id);
             isEmptyCart() && renderEmptyCart();
             return;
         }
-        inputQuantityElm.value = `${+inputQuantityElm.value + updateValue}`;
+        inputQuantityElm.value = "".concat(+inputQuantityElm.value + updateValue);
     }
-    const totalPriceElm = document.querySelector('.js-total-price');
-    const totalPriceItemElm = document.querySelector('.js-item-total-' + id);
+    var totalPriceElm = document.querySelector('.js-total-price');
+    var totalPriceItemElm = document.querySelector('.js-item-total-' + id);
     if (totalPriceElm) {
-        renderTotalPrice(`${updatePrice(item, +totalPriceElm.innerHTML, updateValue)}`);
+        renderTotalPrice("".concat(updatePrice(item, +totalPriceElm.innerHTML, updateValue)));
     }
     if (totalPriceItemElm) {
-        totalPriceItemElm.innerHTML = `${updatePrice(item, +totalPriceItemElm.innerHTML, updateValue)}`;
+        totalPriceItemElm.innerHTML = "".concat(updatePrice(item, +totalPriceItemElm.innerHTML, updateValue));
     }
     cartList[id].quantity += updateValue;
     setStorage(listKeys.cartList, cartList);
     renderQuantityCart();
 };
-const addEventToUpdateBtn = (selector, updateValue) => {
-    const updateBtnsElm = document.querySelectorAll(selector);
+var addEventToUpdateBtn = function (selector, updateValue) {
+    var updateBtnsElm = document.querySelectorAll(selector);
     if (updateBtnsElm) {
-        updateBtnsElm.forEach(btn => {
-            btn.addEventListener('click', (e) => {
+        updateBtnsElm.forEach(function (btn) {
+            btn.addEventListener('click', function (e) {
                 updateQuantityCartItem(e.target, updateValue);
             });
         });
     }
 };
-const renderCart = () => {
+var renderCart = function () {
     renderQuantityCart();
-    const cartList = getStorage(listKeys.cartList);
-    const productsList = getStorage(listKeys.productsList);
-    const cartListElm = document.querySelector('.js-cart-list');
-    let total = 0;
+    var cartList = getStorage(listKeys.cartList);
+    var productsList = getStorage(listKeys.productsList);
+    var cartListElm = document.querySelector('.js-cart-list');
+    var total = 0;
     if (Object.keys(cartList).length && cartListElm) {
-        for (let id in cartList) {
-            const item = productsList[id];
-            const quantity = cartList[id].quantity;
-            const priceDiscount = convertToFixed(calcPriceDiscount(item.price, item.discount), 2);
+        for (var id in cartList) {
+            var item = productsList[id];
+            var quantity = cartList[id].quantity;
+            var priceDiscount = convertToFixed(calcPriceDiscount(item.price, item.discount), 2);
             total += priceDiscount * quantity || item.price * quantity;
-            cartListElm.innerHTML += `<li class="cart-item js-cart-item js-cart-item-${item.id}">
-      <div class="cart-item-left">
-        <div class="cart-img">
-          <img src="${item.thumbnail}" alt="" />
-        </div>
-        ${item.discount ? `<div class="badge badge-primary">${item.discount * 100 + '%'} </div>` : ""}
-        <div class="cart-info">
-          <div class="cart-info-top">
-            <h4 class="cart-name">T-Shirt Summer Vibe</h4>
-            <div class="cart-price">
-              ${item.discount ? `<p class="price-discount">${'$' + priceDiscount}</p>` : ""}
-              <p class="price-current">${'$' + item.price}</p>
-            </div>
-          </div>
-          <p class="cart-total-item">
-            Total: 
-            <span class="${"js-item-total-" + item.id}">
-              ${item.discount ? convertToFixed((priceDiscount * quantity), 2) : convertToFixed((item.price * quantity), 2)}
-            </span>
-          </p>
-        </div>
-      </div>
-      <div class="cart-option">
-        <div class="quantity">
-          <button 
-            data-id="${item.id}" 
-            class="js-btn-descrease">
-              -
-          </button>
-          <input type="number" class="${'js-quantity-' + item.id}" disabled min="0" value="${quantity}"/>
-          <button 
-            data-id="${item.id}" 
-            class="js-btn-inscrease">
-              +
-          </button>
-        </div>
-        <button class="btn remove-btn js-remove-btn" data-id="${item.id}">Remove</button>
-      </div>
-    </li>`;
+            cartListElm.innerHTML += "<li class=\"cart-item js-cart-item js-cart-item-".concat(item.id, "\">\n      <div class=\"cart-item-left\">\n        <div class=\"cart-img\">\n          <img src=\"").concat(item.thumbnail, "\" alt=\"\" />\n        </div>\n        ").concat(item.discount ? "<div class=\"badge badge-primary\">".concat(item.discount * 100 + '%', " </div>") : "", "\n        <div class=\"cart-info\">\n          <div class=\"cart-info-top\">\n            <h4 class=\"cart-name\">T-Shirt Summer Vibe</h4>\n            <div class=\"cart-price\">\n              ").concat(item.discount ? "<p class=\"price-discount\">".concat('$' + priceDiscount, "</p>") : "", "\n              <p class=\"price-current\">").concat('$' + item.price, "</p>\n            </div>\n          </div>\n          <p class=\"cart-total-item\">\n            Total: \n            <span class=\"").concat("js-item-total-" + item.id, "\">\n              ").concat(item.discount ? convertToFixed((priceDiscount * quantity), 2) : convertToFixed((item.price * quantity), 2), "\n            </span>\n          </p>\n        </div>\n      </div>\n      <div class=\"cart-option\">\n        <div class=\"quantity\">\n          <button \n            data-id=\"").concat(item.id, "\" \n            class=\"js-btn-descrease\">\n              -\n          </button>\n          <input type=\"number\" class=\"").concat('js-quantity-' + item.id, "\" disabled min=\"0\" value=\"").concat(quantity, "\"/>\n          <button \n            data-id=\"").concat(item.id, "\" \n            class=\"js-btn-inscrease\">\n              +\n          </button>\n        </div>\n        <button class=\"btn remove-btn js-remove-btn\" data-id=\"").concat(item.id, "\">Remove</button>\n      </div>\n    </li>");
         }
     }
-    renderTotalPrice(`${convertToFixed(total, 2)}`);
+    renderTotalPrice("".concat(convertToFixed(total, 2)));
     addEventToRemoveBtn();
     addEventToUpdateBtn('.js-btn-inscrease', 1);
     addEventToUpdateBtn('.js-btn-descrease', -1);

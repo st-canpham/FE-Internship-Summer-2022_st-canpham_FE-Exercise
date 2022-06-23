@@ -4,7 +4,10 @@ import {
   setStorage, 
   renderQuantityCart, 
   convertToFixed, 
-  calcPriceDiscount 
+  calcPriceDiscount,
+  ProductItem,
+  ProductsList,
+  CartList,
 } 
 from './base.js';
 
@@ -21,18 +24,21 @@ const listProductsLocal = {
     name: 'Loose Knit 3/4 Sleeve',
     thumbnail: 'img/product-2.png',
     price: 119.99,
+    discount: 0
   },
   3 :{
     id: 3,
     name: 'Basic Slim Fit T-Shirt',
     thumbnail: 'img/product-3.png',
     price: 79.99,
+    discount: 0
   },
   4 :{
     id: 4,
     name: 'Loose Textured T-Shirt',
     thumbnail: 'img/product-4.png',
     price: 119.99,
+    discount: 0
   },
 };
 
@@ -42,11 +48,11 @@ const productsListElm: HTMLElement | null = document.querySelector('.js-products
 
 const renderProducts = () => {
   renderQuantityCart();
-  const productsList = getStorage(listKeys.productsList);
+  const productsList: ProductsList = getStorage(listKeys.productsList);
   const productsLength = Object.keys(productsList).length;
   if (productsLength && productsListElm) {
     for (let id in productsList) {
-      let productItem = productsList[id];
+      let productItem: ProductItem = productsList[id];
       let priceDiscount = convertToFixed(calcPriceDiscount(productItem.price, productItem.discount), 2);
       productsListElm.innerHTML += `<li class="product-item col-3 col-sm-6">
              <div class="product">
@@ -73,7 +79,7 @@ const renderProducts = () => {
 };
 
 const addToCart = (target: HTMLElement) => {
-  const cartList = getStorage(listKeys.cartList);
+  const cartList: CartList = getStorage(listKeys.cartList);
   const id: number = Number(target.dataset.id);
   if (cartList?.[id]) {
     cartList[id].quantity += 1;
