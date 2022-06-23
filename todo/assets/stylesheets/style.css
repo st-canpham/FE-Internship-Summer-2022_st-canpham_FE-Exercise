@@ -78,6 +78,8 @@ body {
   transform: translateY(-50%);
   background-color: #e74d3d;
   transition: 0.25s ease-in-out;
+  opacity: 0;
+  pointer-events: none;
 }
 
 .todo-item:last-child {
@@ -85,4 +87,6 @@ body {
 }
 
 .todo-item:hover .todo-remove-btn{
+  opacity: 1;
+  pointer-events: unset;
 }
