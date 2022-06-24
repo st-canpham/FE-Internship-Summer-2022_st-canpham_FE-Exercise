@@ -1,6 +1,6 @@
 var listKeys = {
   todoList: 'todo-list'
-}
+};
 
 function setStorage(key, value) {
   localStorage.setItem(key, JSON.stringify(value));
@@ -16,7 +16,7 @@ function removeTodo(id) {
   todoRemoveElm.remove();
   delete objTodoList[id];
   setStorage(listKeys.todoList, objTodoList);
-}
+};
 
 function renderTodoItem(todo) {
   var todoListElm = document.querySelector('.js-todo-list');
@@ -35,14 +35,21 @@ function renderTodoItem(todo) {
   todoItem.appendChild(todoContent);
   todoItem.appendChild(todoRemoveBtn);
   todoListElm.appendChild(todoItem);
-}
+};
 
 function renderTodoList() {
+  var todoInputElm = document.querySelector('.js-todo-input');
+  todoInputElm.addEventListener('keydown', function(e) {
+    if(e.keyCode === 13) {
+      addToDo();
+    }
+  })
   var objTodoList = getStorage(listKeys.todoList) || {};
   Object.values(objTodoList).forEach(function(todo) {
     renderTodoItem(todo);
+    addEventToAddBtn();
   })
-}
+};
 
 function addToDo() {
   var objTodoList = getStorage(listKeys.todoList) || {};
@@ -56,32 +63,20 @@ function addToDo() {
       status: 0
     };
     objTodoList[id] = todo;
-    setStorage(listKeys.todoList, objTodoList);
     renderTodoItem(todo);
+    setStorage(listKeys.todoList, objTodoList);
     todoInputElm.value = '';
     todoInputElm.focus();
   }
-}
+};
 
 function addEventToAddBtn() {
   var addBtn = document.querySelector('.js-add-btn');
-  addBtn.addEventListener('click', addToDo)
-}
-
-// function addEventToRemoveBtn() {
-//   var removeBtnsElm = document.querySelectorAll('.js-remove-btn');
-//   removeBtnsElm.forEach(function(btn) {
-//     btn.addEventListener('click', function() {
-//       console.log('remove')
-//     })
-//   })
-// }
-
-
+  addBtn.addEventListener('click', addToDo);
+};
 
 function play() {
   renderTodoList();
-  addEventToAddBtn();
-}
+};
 
 play();
