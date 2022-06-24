@@ -47,8 +47,8 @@ function renderTodoList() {
   var objTodoList = getStorage(listKeys.todoList) || {};
   Object.values(objTodoList).forEach(function(todo) {
     renderTodoItem(todo);
-    addEventToAddBtn();
   })
+  addEventToAddBtn();
 };
 
 function addToDo() {
