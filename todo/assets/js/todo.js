@@ -10,19 +10,21 @@ function getStorage(key) {
   return JSON.parse(localStorage.getItem(key));
 };
 
-function removeTodo(id) {
-  var objTodoList = getStorage(listKeys.todoList) || {};
-  var todoRemoveElm = document.querySelector('.js-todo-item-'+id);
+function removeTodo(id, removeBtn) {
+  var arrTodoList = getStorage(listKeys.todoList) || [];
+  var todoRemoveElm = removeBtn.parentElement;
   todoRemoveElm.remove();
-  delete objTodoList[id];
-  setStorage(listKeys.todoList, objTodoList);
+  var index = arrTodoList.findIndex(function (todoItem) {
+    return todoItem.id === id;
+  });
+  arrTodoList.splice(index);
+  setStorage(listKeys.todoList, arrTodoList);
 };
 
 function renderTodoItem(todo) {
   var todoListElm = document.querySelector('.js-todo-list');
-  var idRemoveBtn = todo.id;
   var todoItem = document.createElement('li');
-  todoItem.classList.add('todo-item', 'js-todo-item-'+idRemoveBtn);
+  todoItem.classList.add('todo-item');
   var todoContent = document.createElement('p');
   todoContent.classList.add('todo-content');
   todoContent.innerText = todo.content;
@@ -30,7 +32,7 @@ function renderTodoItem(todo) {
   todoRemoveBtn.classList.add('btn', 'todo-remove-btn');
   todoRemoveBtn.innerHTML = '<i class="fa-solid fa-trash"></i>';
   todoRemoveBtn.addEventListener('click', function() {
-    removeTodo(idRemoveBtn);
+    removeTodo(todo.id, this);
   })
   todoItem.appendChild(todoContent);
   todoItem.appendChild(todoRemoveBtn);
@@ -44,35 +46,37 @@ function renderTodoList() {
       addToDo();
     }
   })
-  var objTodoList = getStorage(listKeys.todoList) || {};
-  Object.values(objTodoList).forEach(function(todo) {
+  var arrTodoList = getStorage(listKeys.todoList) || [];
+  arrTodoList.forEach(function(todo) {
     renderTodoItem(todo);
   })
-  addEventToAddBtn();
+  addEventToForm();
 };
 
 function addToDo() {
-  var objTodoList = getStorage(listKeys.todoList) || {};
+  var arrTodoList = getStorage(listKeys.todoList) || [];
   var todoInputElm = document.querySelector('.js-todo-input');
   var todoContent = todoInputElm.value.trim();
   if(todoContent) {
     var id = Date.now();
     var todo = {
-      id,
-      content: todoContent,
-      status: 0
+      id: id,
+      content: todoContent
     };
-    objTodoList[id] = todo;
+    arrTodoList.push(todo);
     renderTodoItem(todo);
-    setStorage(listKeys.todoList, objTodoList);
+    setStorage(listKeys.todoList, arrTodoList);
     todoInputElm.value = '';
     todoInputElm.focus();
   }
 };
 
-function addEventToAddBtn() {
-  var addBtn = document.querySelector('.js-add-btn');
-  addBtn.addEventListener('click', addToDo);
+function addEventToForm() {
+  var todoFormElm = document.querySelector('.js-todo-form');
+  todoFormElm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    addToDo();
+  });
 };
 
 function play() {
