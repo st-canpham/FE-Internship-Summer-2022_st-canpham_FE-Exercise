@@ -12,7 +12,7 @@ function renderCart() {
     var item = productsList[cartId];
     var quantity = cartList[cartId].quantity;
     var priceDiscount = convertToFixed((calcPriceDiscount(item.price, item.discount)), 2);
-
+    
     cartListElm.innerHTML += `<li class="cart-item js-cart-item cart-item-${item.id}">
       <div class="cart-item-left">
         <div class="cart-img">
